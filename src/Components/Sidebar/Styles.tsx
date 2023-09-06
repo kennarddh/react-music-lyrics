@@ -3,11 +3,15 @@ import { styled } from 'styled-components'
 export const Container = styled.div`
 	width: 25%;
 
-	padding: 10px 20px;
+	padding: 20px;
 
 	background-color: #eee;
 
 	border-radius: 10px 0 0 10px;
+
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
 `
 
 export const Label = styled.label`
@@ -18,4 +22,15 @@ export const Label = styled.label`
 
 export const Input = styled.input`
 	width: 70%;
+`
+
+export const Button = styled.button`
+	border: none;
+	border-radius: 8px;
+
+	padding: 10px 20px;
+
+	background-color: #ddd;
+
+	cursor: pointer;
 `

@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { Container, Label, Input } from './Styles'
+import { Container, Label, Input, Button } from './Styles'
 
 const Sidebar: FC = () => {
 	return (
@@ -9,6 +9,7 @@ const Sidebar: FC = () => {
 				Font size
 				<Input id='fontSize' type='number' min={0} max={100} />
 			</Label>
+			<Button>Change to full screen</Button>
 		</Container>
 	)
 }
