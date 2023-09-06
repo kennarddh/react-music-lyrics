@@ -1,0 +1,38 @@
+import { FC, ReactNode, createContext, useEffect, useState } from 'react'
+
+interface IPagesContext {
+	IsFullScreen: boolean
+	SetIsFullScreen: (title: boolean) => void
+}
+
+interface IPagesContextProvider {
+	children: ReactNode
+}
+
+const FullScreenContext = createContext<IPagesContext>({
+	IsFullScreen: false,
+	SetIsFullScreen: () => undefined,
+})
+
+export const FullScreenProvider: FC<IPagesContextProvider> = ({ children }) => {
+	const [IsFullScreen, SetIsFullScreen] = useState<boolean>(false)
+
+	useEffect(() => {
+		addEventListener('fullscreenchange', () => {
+			console.log(document.fullscreenElement)
+		})
+	})
+
+	useEffect(() => {
+		if (IsFullScreen) document.fullscreenElement?.requestFullscreen()
+		else document.exitFullscreen()
+	}, [IsFullScreen])
+
+	return (
+		<FullScreenContext.Provider value={{ IsFullScreen, SetIsFullScreen }}>
+			{children}
+		</FullScreenContext.Provider>
+	)
+}
+
+export default FullScreenContext
