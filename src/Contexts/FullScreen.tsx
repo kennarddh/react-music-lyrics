@@ -18,14 +18,12 @@ export const FullScreenProvider: FC<IPagesContextProvider> = ({ children }) => {
 	const [IsFullScreen, SetIsFullScreen] = useState<boolean>(false)
 
 	useEffect(() => {
-		addEventListener('fullscreenchange', () => {
-			console.log(document.fullscreenElement)
-		})
-	})
+		if (IsFullScreen)
+			return void document
+				.querySelector('#root :nth-child(1) div')
+				?.requestFullscreen()
 
-	useEffect(() => {
-		if (IsFullScreen) document.fullscreenElement?.requestFullscreen()
-		else document.exitFullscreen()
+		if (document.fullscreenElement) document.exitFullscreen()
 	}, [IsFullScreen])
 
 	return (
