@@ -1,4 +1,4 @@
-import { FC, ReactNode, createContext, useEffect, useState } from 'react'
+import { FC, ReactNode, createContext, useCallback, useState } from 'react'
 
 interface IPagesContext {
 	IsFullScreen: boolean
@@ -15,16 +15,20 @@ const FullScreenContext = createContext<IPagesContext>({
 })
 
 export const FullScreenProvider: FC<IPagesContextProvider> = ({ children }) => {
-	const [IsFullScreen, SetIsFullScreen] = useState<boolean>(false)
+	const [IsFullScreen, SetIsFullScreenBase] = useState<boolean>(false)
 
-	useEffect(() => {
-		if (IsFullScreen)
+	const SetIsFullScreen = useCallback((isFullScreen: boolean) => {
+		if (!navigator.userActivation.isActive) return
+
+		if (isFullScreen)
 			return void document
 				.querySelector('#root :nth-child(1) div')
 				?.requestFullscreen()
 
 		if (document.fullscreenElement) document.exitFullscreen()
-	}, [IsFullScreen])
+
+		SetIsFullScreenBase(isFullScreen)
+	}, [])
 
 	return (
 		<FullScreenContext.Provider value={{ IsFullScreen, SetIsFullScreen }}>
