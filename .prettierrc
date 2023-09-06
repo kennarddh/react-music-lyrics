@@ -1,0 +1,30 @@
+{
+	"tabWidth": 4,
+	"singleQuote": true,
+	"useTabs": true,
+	"jsxSingleQuote": true,
+	"semi": false,
+	"arrowParens": "avoid",
+	"endOfLine": "lf",
+
+	"importOrder": [
+		"^react$",
+		"^react-router-dom",
+		"^@fortawesome/react-fontawesome",
+		"^@fortawesome",
+		"^vite$",
+		"^@vitejs/",
+		"^vite-",
+		"<THIRD_PARTY_MODULES>",
+		"^Components/",
+		"^Contexts/",
+		"^Utils/",
+		"^Hooks/",
+		"^Constants/",
+		"^Api/",
+		"^Pages/",
+		"^[./]"
+	],
+	"importOrderSeparation": true,
+	"importOrderSortSpecifiers": true
+}
