@@ -13,6 +13,9 @@ interface ILyricContext {
 
 	AddLyricSegment: (newSegment: ILyricSegment) => void
 	EditLyricSegment: (id: UUID, newSegment: Omit<ILyricSegment, 'id'>) => void
+
+	CurrentSegmentID: UUID | null
+	SetCurrentSegmentID: (newID: UUID | null) => void
 }
 
 interface ILyricContextProvider {
@@ -24,6 +27,9 @@ const LyricContext = createContext<ILyricContext>({
 
 	AddLyricSegment: () => undefined,
 	EditLyricSegment: () => undefined,
+
+	CurrentSegmentID: null,
+	SetCurrentSegmentID: () => undefined,
 })
 
 export const LyricProvider: FC<ILyricContextProvider> = ({ children }) => {
@@ -39,6 +45,8 @@ export const LyricProvider: FC<ILyricContextProvider> = ({ children }) => {
 			words: 'Dolor sit amet.',
 		},
 	])
+
+	const [CurrentSegmentID, SetCurrentSegmentID] = useState<UUID | null>(null)
 
 	const EditLyricSegment = useCallback(
 		(id: UUID, newSegment: Omit<ILyricSegment, 'id'>) => {
@@ -59,7 +67,13 @@ export const LyricProvider: FC<ILyricContextProvider> = ({ children }) => {
 
 	return (
 		<LyricContext.Provider
-			value={{ LyricSegments, AddLyricSegment, EditLyricSegment }}
+			value={{
+				LyricSegments,
+				AddLyricSegment,
+				EditLyricSegment,
+				CurrentSegmentID,
+				SetCurrentSegmentID,
+			}}
 		>
 			{children}
 		</LyricContext.Provider>
