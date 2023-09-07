@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 
 import useFullScreen from 'Hooks/useFullScreen'
 import useContentStyles from 'Hooks/useContentStyles'
@@ -13,6 +13,7 @@ import {
 	Timeline,
 	TimelineContent,
 } from './Styles'
+import { ILyricSegment } from 'Contexts/Lyric'
 
 const Scene: FC = () => {
 	const { FullScreenElementRef } = useFullScreen()
@@ -24,7 +25,34 @@ const Scene: FC = () => {
 		CurrentSegmentID,
 		SetCurrentSegmentID,
 		GetLyricSegmentByID,
+		GetNextSegmentID,
+		GetPreviousSegmentID,
 	} = useLyric()
+
+	useEffect(() => {
+		const OnKeyDown = (event: KeyboardEvent) => {
+			if (!CurrentSegmentID) return
+
+			let targetSegment: ILyricSegment | null = null
+
+			if (event.key === 'ArrowRight')
+				targetSegment = GetNextSegmentID(CurrentSegmentID)
+
+			if (event.key === 'ArrowLeft')
+				targetSegment = GetPreviousSegmentID(CurrentSegmentID)
+
+			if (targetSegment) SetCurrentSegmentID(targetSegment.id)
+		}
+
+		addEventListener('keydown', OnKeyDown)
+
+		return () => removeEventListener('keydown', OnKeyDown)
+	}, [
+		CurrentSegmentID,
+		GetNextSegmentID,
+		GetPreviousSegmentID,
+		SetCurrentSegmentID,
+	])
 
 	return (
 		<Container>
