@@ -11,7 +11,7 @@ export const Container = styled.div`
 
 	display: flex;
 	flex-direction: column;
-	gap: 10px;
+	gap: 20px;
 `
 
 export const Label = styled.label`
@@ -21,7 +21,7 @@ export const Label = styled.label`
 `
 
 export const Input = styled.input`
-	width: 70%;
+	width: 60%;
 
 	border: none;
 	border-radius: 4px;
@@ -49,3 +49,5 @@ export const Button = styled.button`
 
 	cursor: pointer;
 `
+
+export const Header = styled.h3``

@@ -3,7 +3,7 @@ import { FC, useId } from 'react'
 import useFullScreen from 'Hooks/useFullScreen'
 import useContentStyles from 'Hooks/useContentStyles'
 
-import { Container, Label, Input, Button } from './Styles'
+import { Container, Label, Input, Button, Header } from './Styles'
 import Clamp from 'Utils/Clamp'
 import FontFamilyGenericNames from 'Constants/FontFamilyGenericNames'
 
@@ -21,11 +21,13 @@ const Sidebar: FC = () => {
 	const FontSizeInputId = useId()
 	const TextColorInputId = useId()
 	const TextFontFamilyGenericNameInputId = useId()
+	const SpotifyTrackIDForImportID = useId()
 
 	return (
 		<Container>
+			<Header>Content Settings</Header>
 			<Label htmlFor={FontSizeInputId}>
-				Font size
+				Font Size
 				<Input
 					id={FontSizeInputId}
 					type='number'
@@ -40,7 +42,7 @@ const Sidebar: FC = () => {
 				/>
 			</Label>
 			<Label htmlFor={TextColorInputId}>
-				Text color
+				Text Color
 				<Input
 					id={TextColorInputId}
 					type='color'
@@ -66,6 +68,11 @@ const Sidebar: FC = () => {
 						),
 					)}
 				</Input>
+			</Label>
+			<Header>Import From Spotify</Header>
+			<Label htmlFor={SpotifyTrackIDForImportID}>
+				Spotify Track ID
+				<Input id={SpotifyTrackIDForImportID} type='text' />
 			</Label>
 			<Button onClick={() => SetIsFullScreen(true)}>
 				Change to full screen
