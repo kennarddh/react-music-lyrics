@@ -47,14 +47,23 @@ export const Timeline = styled.div`
 	width: 100%;
 	height: 18%;
 
-	padding: 20px;
+	padding: 10px;
 
 	background-color: #eee;
 
 	border-radius: 10px 0 0 0;
+
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	flex-direction: row;
 `
 
 export const TimelineContent = styled.p`
-	width: 100%;
-	height: 18%;
+	width: 30%;
+	height: 90%;
+
+	background-color: #fff;
+
+	border-radius: 10px;
 `
