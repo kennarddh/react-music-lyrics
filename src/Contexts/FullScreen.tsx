@@ -5,13 +5,13 @@ import {
 	useCallback,
 	useRef,
 	useState,
-	MutableRefObject,
+	RefObject,
 } from 'react'
 
 interface IPagesContext {
 	IsFullScreen: boolean
 	SetIsFullScreen: (title: boolean) => void
-	FullScreenElementRef: MutableRefObject<HTMLElement | undefined>
+	FullScreenElementRef: RefObject<HTMLDivElement>
 }
 
 interface IPagesContextProvider {
@@ -21,12 +21,12 @@ interface IPagesContextProvider {
 const FullScreenContext = createContext<IPagesContext>({
 	IsFullScreen: false,
 	SetIsFullScreen: () => undefined,
-	FullScreenElementRef: { current: undefined },
+	FullScreenElementRef: {} as RefObject<HTMLDivElement>,
 })
 
 export const FullScreenProvider: FC<IPagesContextProvider> = ({ children }) => {
 	const [IsFullScreen, SetIsFullScreenBase] = useState<boolean>(false)
-	const FullScreenElementRef = useRef<HTMLElement>()
+	const FullScreenElementRef = useRef<HTMLDivElement>(null)
 
 	const SetIsFullScreen = useCallback((isFullScreen: boolean) => {
 		if (!navigator.userActivation.isActive) return
