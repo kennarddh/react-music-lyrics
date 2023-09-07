@@ -60,7 +60,7 @@ export const AddSegmentButton = styled.button`
 	cursor: pointer;
 
 	background-color: #f90;
-	color: white;
+	color: #fff;
 	text-align: center;
 
 	&:hover {
