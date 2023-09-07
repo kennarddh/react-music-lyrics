@@ -1,3 +1,4 @@
+import FontFamilyGenericNames from 'Constants/FontFamilyGenericNames'
 import { FC, ReactNode, createContext, useState } from 'react'
 
 interface IContentStylesContext {
@@ -25,10 +26,10 @@ const ContentStylesContext = createContext<IContentStylesContext>({
 export const ContentStylesProvider: FC<IContentStylesContextProvider> = ({
 	children,
 }) => {
-	const [FontSize, SetFontSize] = useState<number>(24)
-	const [TextColor, SetTextColor] = useState<string>('#000000')
+	const [FontSize, SetFontSize] = useState<number>(50)
+	const [TextColor, SetTextColor] = useState<string>('#ffffff')
 	const [TextFontFamilyGenericName, SetTextFontFamilyGenericName] =
-		useState<string>('#000000')
+		useState<string>(FontFamilyGenericNames.SansSerif)
 
 	return (
 		<ContentStylesContext.Provider
