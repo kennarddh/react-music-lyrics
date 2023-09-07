@@ -4,8 +4,9 @@ import {
 	createContext,
 	useCallback,
 	useRef,
-	useState,
+	useMemo,
 	RefObject,
+	useEffect,
 } from 'react'
 
 interface IPagesContext {
@@ -25,7 +26,6 @@ const FullScreenContext = createContext<IPagesContext>({
 })
 
 export const FullScreenProvider: FC<IPagesContextProvider> = ({ children }) => {
-	const [IsFullScreen, SetIsFullScreenBase] = useState<boolean>(false)
 	const FullScreenElementRef = useRef<HTMLDivElement>(null)
 
 	const SetIsFullScreen = useCallback((isFullScreen: boolean) => {
@@ -35,9 +35,11 @@ export const FullScreenProvider: FC<IPagesContextProvider> = ({ children }) => {
 			return void FullScreenElementRef?.current?.requestFullscreen()
 
 		if (document.fullscreenElement) document.exitFullscreen()
-
-		SetIsFullScreenBase(isFullScreen)
 	}, [])
+
+	useEffect(() => {})
+
+	const IsFullScreen = useMemo(() => !!document.fullscreenElement, [])
 
 	return (
 		<FullScreenContext.Provider
