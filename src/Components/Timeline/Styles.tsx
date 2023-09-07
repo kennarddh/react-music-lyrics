@@ -49,7 +49,7 @@ export const Content = styled.button<{ $isActive?: boolean }>`
 	}
 `
 
-export const AddSegmentButton = styled.button`
+export const AddButton = styled.button`
 	height: 60%;
 
 	aspect-ratio: 1/1;

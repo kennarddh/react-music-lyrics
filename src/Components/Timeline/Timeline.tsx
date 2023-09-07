@@ -2,14 +2,14 @@ import { FC } from 'react'
 
 import useLyric from 'Hooks/useLyric'
 
-import { AddSegmentButton, Container, Content } from './Styles'
+import { AddButton, Container, Content } from './Styles'
 
 const Timeline: FC = () => {
 	const { LyricSegments, CurrentSegmentID, SetCurrentSegmentID } = useLyric()
 
 	return (
 		<Container>
-			<AddSegmentButton>Add</AddSegmentButton>
+			<AddButton>Add</AddButton>
 			{LyricSegments.map(segment => (
 				<Content
 					key={segment.id}
@@ -19,7 +19,7 @@ const Timeline: FC = () => {
 					{segment.words}
 				</Content>
 			))}
-			<AddSegmentButton>Add</AddSegmentButton>
+			<AddButton>Add</AddButton>
 		</Container>
 	)
 }
