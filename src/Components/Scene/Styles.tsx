@@ -45,7 +45,7 @@ export const Text = styled.p``
 
 export const Timeline = styled.div`
 	width: 100%;
-	height: 18%;
+	height: 20%;
 
 	padding: 10px;
 
