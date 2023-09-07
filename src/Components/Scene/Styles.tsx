@@ -62,7 +62,7 @@ export const Timeline = styled.div`
 	overflow-x: scroll;
 `
 
-export const TimelineContent = styled.p`
+export const TimelineContent = styled.button`
 	flex-shrink: 0;
 
 	width: 30%;
@@ -75,4 +75,11 @@ export const TimelineContent = styled.p`
 	padding: 10px 20px;
 
 	overflow: hidden;
+
+	cursor: pointer;
+
+	font-size: 16px;
+	border: none;
+
+	text-align: left;
 `
