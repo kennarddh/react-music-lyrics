@@ -41,7 +41,14 @@ export const BackgroundImage = styled.img`
 	z-index: -100;
 `
 
-export const Text = styled.p``
+export const Text = styled.p`
+	width: 100%;
+	height: 100%;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+`
 
 export const Timeline = styled.div`
 	width: 100%;
