@@ -28,6 +28,8 @@ const Scene: FC = () => {
 		GetNextSegmentID,
 		GetPreviousSegmentID,
 		EditLyricSegment,
+		IsEditing,
+		SetIsEditing,
 	} = useLyric()
 
 	useEffect(() => {
@@ -84,6 +86,9 @@ const Scene: FC = () => {
 								: ''
 						}
 						onChange={OnTextChange}
+						readOnly={!IsEditing}
+						onFocus={() => SetIsEditing(true)}
+						onBlur={() => SetIsEditing(false)}
 					/>
 				</Content>
 			</ContentContainer>
