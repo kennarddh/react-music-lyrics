@@ -19,7 +19,12 @@ const Scene: FC = () => {
 	const { FontSize, TextColor, TextFontFamilyGenericName } =
 		useContentStyles()
 
-	const { LyricSegments, CurrentSegmentID, GetLyricSegmentByID } = useLyric()
+	const {
+		LyricSegments,
+		CurrentSegmentID,
+		SetCurrentSegmentID,
+		GetLyricSegmentByID,
+	} = useLyric()
 
 	return (
 		<Container>
@@ -41,7 +46,10 @@ const Scene: FC = () => {
 			</ContentContainer>
 			<Timeline>
 				{LyricSegments.map(segment => (
-					<TimelineContent key={segment.id}>
+					<TimelineContent
+						key={segment.id}
+						onClick={() => SetCurrentSegmentID(segment.id)}
+					>
 						{segment.words}
 					</TimelineContent>
 				))}
