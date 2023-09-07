@@ -40,7 +40,7 @@ const Sidebar: FC = () => {
 			</Label>
 			<Label htmlFor='textFontFamilyGenericNames'>
 				Text Font Family Generic
-				<select id='textFontFamilyGenericNames'>
+				<Input as='select' id='textFontFamilyGenericNames'>
 					{Object.entries(FontFamilyGenericNames).map(
 						([name, value]) => (
 							<option value={value} key={value}>
@@ -48,7 +48,7 @@ const Sidebar: FC = () => {
 							</option>
 						),
 					)}
-				</select>
+				</Input>
 			</Label>
 			<Button onClick={() => SetIsFullScreen(true)}>
 				Change to full screen
