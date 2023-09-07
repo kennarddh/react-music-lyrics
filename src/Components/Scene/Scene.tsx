@@ -19,7 +19,7 @@ const Scene: FC = () => {
 	const { FontSize, TextColor, TextFontFamilyGenericName } =
 		useContentStyles()
 
-	const { LyricSegments } = useLyric()
+	const { LyricSegments, CurrentSegmentID, GetLyricSegmentByID } = useLyric()
 
 	return (
 		<Container>
@@ -33,7 +33,9 @@ const Scene: FC = () => {
 							fontFamily: TextFontFamilyGenericName,
 						}}
 					>
-						Text
+						{CurrentSegmentID
+							? GetLyricSegmentByID(CurrentSegmentID)?.words
+							: null}
 					</Text>
 				</Content>
 			</ContentContainer>
