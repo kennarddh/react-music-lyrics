@@ -84,4 +84,8 @@ export const TimelineContent = styled.button<{ $isActive?: boolean }>`
 
 	font-size: 16px;
 	text-align: left;
+
+	&:hover {
+		outline: 4px solid #f90;
+	}
 `
