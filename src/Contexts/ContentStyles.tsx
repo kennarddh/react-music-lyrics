@@ -5,6 +5,8 @@ interface IContentStylesContext {
 	SetFontSize: (fontSize: number) => void
 	TextColor: string
 	SetTextColor: (textColor: string) => void
+	TextFontFamilyGenericName: string
+	SetTextFontFamilyGenericName: (textColor: string) => void
 }
 
 interface IContentStylesContextProvider {
@@ -16,6 +18,8 @@ const ContentStylesContext = createContext<IContentStylesContext>({
 	SetFontSize: () => undefined,
 	TextColor: '',
 	SetTextColor: () => undefined,
+	TextFontFamilyGenericName: '',
+	SetTextFontFamilyGenericName: () => undefined,
 })
 
 export const ContentStylesProvider: FC<IContentStylesContextProvider> = ({
@@ -23,10 +27,19 @@ export const ContentStylesProvider: FC<IContentStylesContextProvider> = ({
 }) => {
 	const [FontSize, SetFontSize] = useState<number>(24)
 	const [TextColor, SetTextColor] = useState<string>('#000000')
+	const [TextFontFamilyGenericName, SetTextFontFamilyGenericName] =
+		useState<string>('#000000')
 
 	return (
 		<ContentStylesContext.Provider
-			value={{ FontSize, SetFontSize, TextColor, SetTextColor }}
+			value={{
+				FontSize,
+				SetFontSize,
+				TextColor,
+				SetTextColor,
+				TextFontFamilyGenericName,
+				SetTextFontFamilyGenericName,
+			}}
 		>
 			{children}
 		</ContentStylesContext.Provider>
