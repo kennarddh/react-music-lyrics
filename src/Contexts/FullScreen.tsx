@@ -5,13 +5,13 @@ import {
 	createContext,
 	useCallback,
 	useEffect,
-	useMemo,
 	useRef,
+	useState,
 } from 'react'
 
 interface IFullScreenContext {
 	IsFullScreen: boolean
-	SetIsFullScreen: (title: boolean) => void
+	SetIsFullScreen: (title: boolean) => Promise<void>
 	FullScreenElementRef: RefObject<HTMLDivElement>
 }
 
@@ -21,34 +21,50 @@ interface IFullScreenContextProvider {
 
 const FullScreenContext = createContext<IFullScreenContext>({
 	IsFullScreen: false,
-	SetIsFullScreen: () => undefined,
+	SetIsFullScreen: () => Promise.resolve(),
 	FullScreenElementRef: {} as RefObject<HTMLDivElement>,
 })
 
 export const FullScreenProvider: FC<IFullScreenContextProvider> = ({
 	children,
 }) => {
+	const [IsFullScreen, SetIsFullScreenBase] = useState<boolean>(false)
+
 	const FullScreenElementRef = useRef<HTMLDivElement>(null)
 
-	const SetIsFullScreen = useCallback((isFullScreen: boolean) => {
+	const SetIsFullScreen = useCallback(async (isFullScreen: boolean) => {
 		if (!navigator.userActivation.isActive) return
 
-		if (isFullScreen)
-			return void FullScreenElementRef?.current?.requestFullscreen()
+		if (isFullScreen) {
+			await FullScreenElementRef?.current?.requestFullscreen()
 
-		if (document.fullscreenElement) document.exitFullscreen()
+			SetIsFullScreenBase(true)
+
+			return
+		}
+
+		if (document.fullscreenElement) {
+			await document.exitFullscreen()
+
+			SetIsFullScreenBase(true)
+		}
 	}, [])
 
 	useEffect(() => {
-		const OnKeyDown = (event: KeyboardEvent) => {
+		const OnKeyDown = async (event: KeyboardEvent) => {
+			if (!navigator.userActivation.isActive) return
+
 			if (event.key === 'F11') {
-				if (document.fullscreenElement) document.exitFullscreen()
+				if (document.fullscreenElement) {
+					await document.exitFullscreen()
 
-				FullScreenElementRef?.current?.requestFullscreen()
+					SetIsFullScreenBase(false)
+				}
+
+				await FullScreenElementRef?.current?.requestFullscreen()
+
+				SetIsFullScreenBase(true)
 			}
-
-			if (event.key === 'Escape' && document.fullscreenElement)
-				document.exitFullscreen()
 		}
 
 		addEventListener('keydown', OnKeyDown)
@@ -56,7 +72,16 @@ export const FullScreenProvider: FC<IFullScreenContextProvider> = ({
 		return () => removeEventListener('keydown', OnKeyDown)
 	}, [])
 
-	const IsFullScreen = useMemo(() => !!document.fullscreenElement, [])
+	useEffect(() => {
+		const OnFullScreenChange = () => {
+			SetIsFullScreenBase(!!document.fullscreenElement)
+		}
+
+		document.addEventListener('fullscreenchange', OnFullScreenChange)
+
+		return () =>
+			document.addEventListener('fullscreenchange', OnFullScreenChange)
+	}, [])
 
 	return (
 		<FullScreenContext.Provider
