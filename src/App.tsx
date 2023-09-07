@@ -6,14 +6,17 @@ import Sidebar from 'Components/Sidebar/Sidebar'
 import { FullScreenProvider } from 'Contexts/FullScreen'
 
 import { Container } from './AppStyles'
+import { LyricsProvider } from 'Contexts/Lyrics'
 
 const App: FC = () => {
 	return (
 		<FullScreenProvider>
-			<Container>
-				<Scene />
-				<Sidebar />
-			</Container>
+			<LyricsProvider>
+				<Container>
+					<Scene />
+					<Sidebar />
+				</Container>
+			</LyricsProvider>
 		</FullScreenProvider>
 	)
 }
