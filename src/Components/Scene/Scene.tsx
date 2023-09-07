@@ -13,7 +13,7 @@ import {
 	Container,
 	Content,
 	ContentContainer,
-	TextInput,
+	TextArea,
 } from './Styles'
 
 const Scene: FC = () => {
@@ -75,7 +75,7 @@ const Scene: FC = () => {
 			<ContentContainer>
 				<Content ref={FullScreenElementRef}>
 					<BackgroundImage src='/background.jpg' alt='backround' />
-					<TextInput
+					<TextArea
 						style={{
 							fontSize: FontSize,
 							color: TextColor,
