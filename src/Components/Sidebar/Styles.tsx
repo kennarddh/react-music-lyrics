@@ -25,6 +25,11 @@ export const Input = styled.input`
 
 	border: none;
 	border-radius: 4px;
+
+	&::-webkit-color-swatch,
+	&::-moz-color-swatch {
+		border-radius: 4px;
+	}
 `
 
 export const Button = styled.button`

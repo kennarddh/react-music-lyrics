@@ -13,6 +13,10 @@ const Sidebar: FC = () => {
 				Font size
 				<Input id='fontSize' type='number' min={0} max={100} />
 			</Label>
+			<Label htmlFor='color'>
+				Text color
+				<Input id='color' type='color' />
+			</Label>
 			<Button onClick={() => SetIsFullScreen(true)}>
 				Change to full screen
 			</Button>
