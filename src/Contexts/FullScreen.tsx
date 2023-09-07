@@ -5,12 +5,13 @@ import {
 	useCallback,
 	useRef,
 	useState,
+	MutableRefObject,
 } from 'react'
 
 interface IPagesContext {
 	IsFullScreen: boolean
 	SetIsFullScreen: (title: boolean) => void
-	SetFullScreenElement: (element: HTMLElement) => void
+	FullScreenElementRef: MutableRefObject<HTMLElement | undefined>
 }
 
 interface IPagesContextProvider {
@@ -20,12 +21,12 @@ interface IPagesContextProvider {
 const FullScreenContext = createContext<IPagesContext>({
 	IsFullScreen: false,
 	SetIsFullScreen: () => undefined,
-	SetFullScreenElement: () => undefined,
+	FullScreenElementRef: { current: undefined },
 })
 
 export const FullScreenProvider: FC<IPagesContextProvider> = ({ children }) => {
 	const [IsFullScreen, SetIsFullScreenBase] = useState<boolean>(false)
-	const FullScreenElement = useRef<HTMLElement>()
+	const FullScreenElementRef = useRef<HTMLElement>()
 
 	const SetIsFullScreen = useCallback((isFullScreen: boolean) => {
 		if (!navigator.userActivation.isActive) return
@@ -40,13 +41,13 @@ export const FullScreenProvider: FC<IPagesContextProvider> = ({ children }) => {
 		SetIsFullScreenBase(isFullScreen)
 	}, [])
 
-	const SetFullScreenElement = useCallback((element: HTMLElement) => {
-		FullScreenElement.current = element
-	}, [])
-
 	return (
 		<FullScreenContext.Provider
-			value={{ IsFullScreen, SetIsFullScreen, SetFullScreenElement }}
+			value={{
+				IsFullScreen,
+				SetIsFullScreen,
+				FullScreenElementRef,
+			}}
 		>
 			{children}
 		</FullScreenContext.Provider>
