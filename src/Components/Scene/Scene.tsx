@@ -37,7 +37,8 @@ const Scene: FC = () => {
 			<Timeline>
 				<TimelineContent>
 					Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-					Quo, delectus.
+					Quo, delectus. Lorem, ipsum dolor sit amet consectetur
+					adipisicing elit. Quo, delectus.
 				</TimelineContent>
 			</Timeline>
 		</Container>

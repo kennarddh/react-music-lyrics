@@ -68,4 +68,6 @@ export const TimelineContent = styled.p`
 	border-radius: 10px;
 
 	padding: 10px 20px;
+
+	overflow: hidden;
 `
