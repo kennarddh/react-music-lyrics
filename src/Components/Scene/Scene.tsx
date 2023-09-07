@@ -59,7 +59,7 @@ const Scene: FC = () => {
 	])
 
 	const OnTextChange = useCallback(
-		(event: ChangeEvent<HTMLInputElement>) => {
+		(event: ChangeEvent<HTMLTextAreaElement>) => {
 			if (!CurrentSegmentID) return
 
 			EditLyricSegment(CurrentSegmentID, {

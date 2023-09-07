@@ -41,7 +41,7 @@ export const BackgroundImage = styled.img`
 	z-index: -100;
 `
 
-export const TextInput = styled.input`
+export const TextInput = styled.textarea`
 	width: 100%;
 	height: 100%;
 
