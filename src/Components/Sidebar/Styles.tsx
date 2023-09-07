@@ -26,7 +26,14 @@ export const Input = styled.input`
 	border: none;
 	border-radius: 4px;
 
-	&::-webkit-color-swatch,
+	&:not([type='color']) {
+		padding: 5px 10px;
+	}
+
+	&::-webkit-color-swatch {
+		border-radius: 4px;
+	}
+
 	&::-moz-color-swatch {
 		border-radius: 4px;
 	}
