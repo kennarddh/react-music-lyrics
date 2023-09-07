@@ -16,6 +16,8 @@ interface ILyricContext {
 
 	CurrentSegmentID: UUID | null
 	SetCurrentSegmentID: (newID: UUID | null) => void
+
+	GetLyricSegmentByID: (id: UUID) => ILyricSegment | null
 }
 
 interface ILyricContextProvider {
@@ -30,6 +32,8 @@ const LyricContext = createContext<ILyricContext>({
 
 	CurrentSegmentID: null,
 	SetCurrentSegmentID: () => undefined,
+
+	GetLyricSegmentByID: () => null,
 })
 
 export const LyricProvider: FC<ILyricContextProvider> = ({ children }) => {
@@ -50,8 +54,6 @@ export const LyricProvider: FC<ILyricContextProvider> = ({ children }) => {
 		() => LyricSegments[0]?.id ?? null,
 	)
 
-	console.log({ CurrentSegmentID })
-
 	const EditLyricSegment = useCallback(
 		(id: UUID, newSegment: Omit<ILyricSegment, 'id'>) => {
 			SetLyricSegments(prev =>
@@ -69,6 +71,13 @@ export const LyricProvider: FC<ILyricContextProvider> = ({ children }) => {
 		SetLyricSegments(prev => [...prev, newSegment])
 	}, [])
 
+	const GetLyricSegmentByID = useCallback(
+		(id: UUID) => {
+			return LyricSegments.find(({ id: iterID }) => id === iterID) ?? null
+		},
+		[LyricSegments],
+	)
+
 	return (
 		<LyricContext.Provider
 			value={{
@@ -77,6 +86,7 @@ export const LyricProvider: FC<ILyricContextProvider> = ({ children }) => {
 				EditLyricSegment,
 				CurrentSegmentID,
 				SetCurrentSegmentID,
+				GetLyricSegmentByID,
 			}}
 		>
 			{children}
