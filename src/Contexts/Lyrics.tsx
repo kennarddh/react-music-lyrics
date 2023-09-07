@@ -1,5 +1,13 @@
 import { FC, ReactNode, createContext } from 'react'
 
+import { UUID } from 'Types'
+
+export interface ILyricWord {
+	id: UUID
+	timeStartMS: number
+	words: string
+}
+
 interface ILyricsContext {}
 
 interface ILyricsContextProvider {
