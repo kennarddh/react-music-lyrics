@@ -22,7 +22,7 @@ const Sidebar: FC = () => {
 		TextFontFamilyGenericName,
 	} = useContentStyles()
 
-	const { SetLyricSegments } = useLyric()
+	const { SetLyricSegments, SetCurrentSegmentID } = useLyric()
 
 	const FontSizeInputId = useId()
 	const TextColorInputId = useId()
@@ -42,7 +42,8 @@ const Sidebar: FC = () => {
 		if (lyricSegments[0]) return alert(lyricSegments[1])
 
 		SetLyricSegments(lyricSegments[1])
-	}, [SetLyricSegments, SpotifyTrackID])
+		SetCurrentSegmentID(lyricSegments[1][0].id)
+	}, [SetCurrentSegmentID, SetLyricSegments, SpotifyTrackID])
 
 	return (
 		<Container>
