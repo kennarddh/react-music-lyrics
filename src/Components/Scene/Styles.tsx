@@ -57,6 +57,7 @@ export const Timeline = styled.div`
 	justify-content: flex-start;
 	align-items: center;
 	flex-direction: row;
+	gap: 10px;
 `
 
 export const TimelineContent = styled.p`
