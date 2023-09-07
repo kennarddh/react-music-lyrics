@@ -66,4 +66,6 @@ export const TimelineContent = styled.p`
 	background-color: #fff;
 
 	border-radius: 10px;
+
+	padding: 10px 20px;
 `
