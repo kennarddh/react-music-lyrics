@@ -25,6 +25,9 @@ type IResponse =
 const SpotifyToLyricSegments = async (
 	spotifyTrackID: string,
 ): Promise<[false, ILyricSegment[]] | [true, string]> => {
+	if (spotifyTrackID === '')
+		return [true, 'url or trackid parameter is required!']
+
 	const req = await fetch(
 		`https://spotify-lyric-api.herokuapp.com/?trackid=${spotifyTrackID}&format=id3`,
 	)
