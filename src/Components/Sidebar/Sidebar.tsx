@@ -9,8 +9,14 @@ import FontFamilyGenericNames from 'Constants/FontFamilyGenericNames'
 
 const Sidebar: FC = () => {
 	const { SetIsFullScreen } = useFullScreen()
-	const { SetFontSize, FontSize, SetTextColor, TextColor } =
-		useContentStyles()
+	const {
+		SetFontSize,
+		FontSize,
+		SetTextColor,
+		TextColor,
+		SetTextFontFamilyGenericName,
+		TextFontFamilyGenericName,
+	} = useContentStyles()
 
 	return (
 		<Container>
@@ -38,9 +44,16 @@ const Sidebar: FC = () => {
 					onChange={event => SetTextColor(event.target.value)}
 				/>
 			</Label>
-			<Label htmlFor='textFontFamilyGenericNames'>
+			<Label htmlFor='textFontFamilyGenericName'>
 				Text Font Family Generic
-				<Input as='select' id='textFontFamilyGenericNames'>
+				<Input
+					as='select'
+					id='textFontFamilyGenericName'
+					value={TextFontFamilyGenericName}
+					onChange={event =>
+						SetTextFontFamilyGenericName(event.target.value)
+					}
+				>
 					{Object.entries(FontFamilyGenericNames).map(
 						([name, value]) => (
 							<option value={value} key={value}>
