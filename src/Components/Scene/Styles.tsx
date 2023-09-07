@@ -2,6 +2,18 @@ import { styled } from 'styled-components'
 
 export const Container = styled.div`
 	width: 75%;
+	height: 100%;
+
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	flex-direction: column;
+`
+
+export const ContentContainer = styled.div`
+	width: 90%;
+	height: 80%;
 
 	display: flex;
 	justify-content: center;
@@ -10,6 +22,7 @@ export const Container = styled.div`
 
 export const Content = styled.div`
 	width: 90%;
+
 	aspect-ratio: 16/9;
 
 	position: relative;
@@ -29,3 +42,19 @@ export const BackgroundImage = styled.img`
 `
 
 export const Text = styled.p``
+
+export const Timeline = styled.div`
+	width: 100%;
+	height: 18%;
+
+	padding: 20px;
+
+	background-color: #eee;
+
+	border-radius: 10px 0 0 0;
+`
+
+export const TimelineContent = styled.p`
+	width: 100%;
+	height: 18%;
+`

@@ -7,7 +7,7 @@ export const Container = styled.div`
 
 	background-color: #eee;
 
-	border-radius: 10px 0 0 10px;
+	border-radius: 10px 0 0 0;
 
 	display: flex;
 	flex-direction: column;
