@@ -25,7 +25,14 @@ const Sidebar: FC = () => {
 	const TextFontFamilyGenericNameInputId = useId()
 	const SpotifyTrackIDForImportID = useId()
 
-	const ImportLyricsFromSpotify = useCallback(() => {}, [])
+	const ImportLyricsFromSpotify = useCallback(() => {
+		if (
+			!confirm(
+				'Importing lyric from spotify will erase current lyric. Are you sure?',
+			)
+		)
+			return
+	}, [])
 
 	return (
 		<Container>
