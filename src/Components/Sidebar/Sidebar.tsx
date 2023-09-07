@@ -1,4 +1,4 @@
-import { FC, useId } from 'react'
+import { FC, useId, useCallback, useState } from 'react'
 
 import useFullScreen from 'Hooks/useFullScreen'
 import useContentStyles from 'Hooks/useContentStyles'
@@ -8,6 +8,8 @@ import Clamp from 'Utils/Clamp'
 import FontFamilyGenericNames from 'Constants/FontFamilyGenericNames'
 
 const Sidebar: FC = () => {
+	const [SpotifyTrackID, SetSpotifyTrackID] = useState<string>('')
+
 	const { SetIsFullScreen } = useFullScreen()
 	const {
 		SetFontSize,
@@ -22,6 +24,8 @@ const Sidebar: FC = () => {
 	const TextColorInputId = useId()
 	const TextFontFamilyGenericNameInputId = useId()
 	const SpotifyTrackIDForImportID = useId()
+
+	const ImportLyricsFromSpotify = useCallback(() => {}, [])
 
 	return (
 		<Container>
@@ -72,8 +76,16 @@ const Sidebar: FC = () => {
 			<Header>Import From Spotify</Header>
 			<Label htmlFor={SpotifyTrackIDForImportID}>
 				Spotify Track ID
-				<Input id={SpotifyTrackIDForImportID} type='text' />
+				<Input
+					id={SpotifyTrackIDForImportID}
+					type='text'
+					value={SpotifyTrackID}
+					onChange={event => SetSpotifyTrackID(event.target.value)}
+				/>
 			</Label>
+			<Button onClick={ImportLyricsFromSpotify}>
+				Import Lyrics From Spotify
+			</Button>
 			<Button onClick={() => SetIsFullScreen(true)}>
 				Change to full screen
 			</Button>
