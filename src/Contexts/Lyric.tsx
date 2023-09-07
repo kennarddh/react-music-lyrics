@@ -11,6 +11,8 @@ import { UUID } from 'Types'
 
 import ArrayInsertAtIndexImmutable from 'Utils/ArrayInsertAtIndexImmutable'
 
+import useFullScreen from 'Hooks/useFullScreen'
+
 export interface ILyricSegment {
 	id: UUID
 	timeStartMS: number
@@ -86,6 +88,8 @@ export const LyricProvider: FC<ILyricContextProvider> = ({ children }) => {
 	const [IsEditing, SetIsEditingBase] = useState<boolean>(false)
 	const [IsAllowedToEdit, SetIsAllowedToEdit] = useState<boolean>(true)
 
+	const { IsFullScreen } = useFullScreen()
+
 	const EditLyricSegment = useCallback(
 		(id: UUID, newSegment: Omit<ILyricSegment, 'id'>) => {
 			SetLyricSegments(prev =>
@@ -158,6 +162,11 @@ export const LyricProvider: FC<ILyricContextProvider> = ({ children }) => {
 	useEffect(() => {
 		if (!IsAllowedToEdit && IsEditing) SetIsEditing(false)
 	}, [IsAllowedToEdit, IsEditing, SetIsEditing])
+
+	useEffect(() => {
+		if (IsFullScreen) SetIsAllowedToEdit(false)
+		else SetIsAllowedToEdit(true)
+	}, [IsFullScreen])
 
 	return (
 		<LyricContext.Provider
