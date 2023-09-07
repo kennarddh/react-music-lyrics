@@ -60,6 +60,8 @@ export const Timeline = styled.div`
 	gap: 10px;
 
 	overflow-x: scroll;
+
+	z-index: 10;
 `
 
 export const TimelineContent = styled.button<{ $isActive?: boolean }>`
