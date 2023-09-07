@@ -8,25 +8,25 @@ export interface ILyricSegment {
 	words: string
 }
 
-interface ILyricsContext {
+interface ILyricContext {
 	LyricSegments: ILyricSegment[]
 
 	AddLyricSegment: (newSegment: ILyricSegment) => void
 	EditLyricSegment: (id: UUID, newSegment: Omit<ILyricSegment, 'id'>) => void
 }
 
-interface ILyricsContextProvider {
+interface ILyricContextProvider {
 	children: ReactNode
 }
 
-const LyricsContext = createContext<ILyricsContext>({
+const LyricContext = createContext<ILyricContext>({
 	LyricSegments: [],
 
 	AddLyricSegment: () => undefined,
 	EditLyricSegment: () => undefined,
 })
 
-export const LyricsProvider: FC<ILyricsContextProvider> = ({ children }) => {
+export const LyricProvider: FC<ILyricContextProvider> = ({ children }) => {
 	const [LyricSegments, SetLyricSegments] = useState<ILyricSegment[]>([])
 
 	const EditLyricSegment = useCallback(
@@ -47,12 +47,12 @@ export const LyricsProvider: FC<ILyricsContextProvider> = ({ children }) => {
 	}, [])
 
 	return (
-		<LyricsContext.Provider
+		<LyricContext.Provider
 			value={{ LyricSegments, AddLyricSegment, EditLyricSegment }}
 		>
 			{children}
-		</LyricsContext.Provider>
+		</LyricContext.Provider>
 	)
 }
 
-export default LyricsContext
+export default LyricContext
