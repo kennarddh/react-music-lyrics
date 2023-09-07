@@ -22,7 +22,7 @@ const Scene: FC = () => {
 		<Container>
 			<ContentContainer>
 				<Content ref={FullScreenElementRef}>
-					<BackgroundImage src='/background.jpg' />
+					<BackgroundImage src='/background.jpg' alt='backround' />
 					<Text
 						style={{
 							fontSize: FontSize,
