@@ -48,3 +48,22 @@ export const Content = styled.button<{ $isActive?: boolean }>`
 		outline: 4px solid #f90;
 	}
 `
+
+export const AddSegmentButton = styled.button`
+	height: 60%;
+
+	aspect-ratio: 1/1;
+
+	border-radius: 50%;
+	border: none;
+
+	cursor: pointer;
+
+	background-color: #f90;
+	color: white;
+	text-align: center;
+
+	&:hover {
+		outline: 4px solid #ccc;
+	}
+`
