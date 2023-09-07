@@ -30,6 +30,8 @@ export const Content = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
+
+	container-type: inline-size;
 `
 
 export const BackgroundImage = styled.img`
