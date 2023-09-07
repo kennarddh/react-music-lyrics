@@ -41,7 +41,7 @@ export const BackgroundImage = styled.img`
 	z-index: -100;
 `
 
-export const Text = styled.p`
+export const TextInput = styled.input`
 	width: 100%;
 	height: 100%;
 
@@ -50,4 +50,9 @@ export const Text = styled.p`
 	align-items: center;
 
 	text-align: center;
+
+	background-color: transparent;
+
+	outline: none;
+	border: none;
 `

@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react'
+import { ChangeEvent, FC, useCallback, useEffect } from 'react'
 
 import Timeline from 'Components/Timeline/Timeline'
 
@@ -13,7 +13,7 @@ import {
 	Container,
 	Content,
 	ContentContainer,
-	Text,
+	TextInput,
 } from './Styles'
 
 const Scene: FC = () => {
@@ -27,6 +27,7 @@ const Scene: FC = () => {
 		GetLyricSegmentByID,
 		GetNextSegmentID,
 		GetPreviousSegmentID,
+		EditLyricSegment,
 	} = useLyric()
 
 	useEffect(() => {
@@ -54,22 +55,36 @@ const Scene: FC = () => {
 		SetCurrentSegmentID,
 	])
 
+	const OnTextChange = useCallback(
+		(event: ChangeEvent<HTMLInputElement>) => {
+			if (!CurrentSegmentID) return
+
+			EditLyricSegment(CurrentSegmentID, {
+				...(GetLyricSegmentByID(CurrentSegmentID) as ILyricSegment),
+				words: event.target?.value,
+			})
+		},
+		[CurrentSegmentID, EditLyricSegment, GetLyricSegmentByID],
+	)
+
 	return (
 		<Container>
 			<ContentContainer>
 				<Content ref={FullScreenElementRef}>
 					<BackgroundImage src='/background.jpg' alt='backround' />
-					<Text
+					<TextInput
 						style={{
 							fontSize: FontSize,
 							color: TextColor,
 							fontFamily: TextFontFamilyGenericName,
 						}}
-					>
-						{CurrentSegmentID
-							? GetLyricSegmentByID(CurrentSegmentID)?.words
-							: null}
-					</Text>
+						value={
+							CurrentSegmentID
+								? GetLyricSegmentByID(CurrentSegmentID)?.words
+								: ''
+						}
+						onChange={OnTextChange}
+					/>
 				</Content>
 			</ContentContainer>
 			<Timeline />
