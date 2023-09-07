@@ -30,6 +30,7 @@ const Scene: FC = () => {
 		EditLyricSegment,
 		IsEditing,
 		SetIsEditing,
+		IsAllowedToEdit,
 	} = useLyric()
 
 	useEffect(() => {
@@ -87,6 +88,7 @@ const Scene: FC = () => {
 						}
 						onChange={OnTextChange}
 						readOnly={!IsEditing}
+						disabled={!IsAllowedToEdit}
 						onFocus={() => SetIsEditing(true)}
 						onBlur={() => SetIsEditing(false)}
 					/>
