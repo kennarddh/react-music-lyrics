@@ -62,7 +62,7 @@ export const Timeline = styled.div`
 	overflow-x: scroll;
 `
 
-export const TimelineContent = styled.button`
+export const TimelineContent = styled.button<{ $isActive?: boolean }>`
 	flex-shrink: 0;
 
 	width: 30%;
@@ -71,15 +71,17 @@ export const TimelineContent = styled.button`
 	background-color: #fff;
 
 	border-radius: 10px;
+	border: none;
 
 	padding: 10px 20px;
+
+	outline: ${({ $isActive = false }) =>
+		$isActive ? '4px solid #ccc' : 'none'};
 
 	overflow: hidden;
 
 	cursor: pointer;
 
 	font-size: 16px;
-	border: none;
-
 	text-align: left;
 `

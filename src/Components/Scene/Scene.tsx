@@ -49,6 +49,7 @@ const Scene: FC = () => {
 					<TimelineContent
 						key={segment.id}
 						onClick={() => SetCurrentSegmentID(segment.id)}
+						$isActive={segment.id === CurrentSegmentID}
 					>
 						{segment.words}
 					</TimelineContent>
