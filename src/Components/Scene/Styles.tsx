@@ -48,6 +48,8 @@ export const Text = styled.p`
 	display: flex;
 	justify-content: center;
 	align-items: center;
+
+	text-align: center;
 `
 
 export const Timeline = styled.div`
