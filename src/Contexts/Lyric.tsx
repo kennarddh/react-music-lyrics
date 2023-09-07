@@ -46,7 +46,11 @@ export const LyricProvider: FC<ILyricContextProvider> = ({ children }) => {
 		},
 	])
 
-	const [CurrentSegmentID, SetCurrentSegmentID] = useState<UUID | null>(null)
+	const [CurrentSegmentID, SetCurrentSegmentID] = useState<UUID | null>(
+		() => LyricSegments[0]?.id ?? null,
+	)
+
+	console.log({ CurrentSegmentID })
 
 	const EditLyricSegment = useCallback(
 		(id: UUID, newSegment: Omit<ILyricSegment, 'id'>) => {
