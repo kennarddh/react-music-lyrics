@@ -6,6 +6,8 @@ import useContentStyles from 'Hooks/useContentStyles'
 import { Container, Label, Input, Button, Header } from './Styles'
 import Clamp from 'Utils/Clamp'
 import FontFamilyGenericNames from 'Constants/FontFamilyGenericNames'
+import SpotifyToLyricSegments from 'Utils/SpotifyToLyricSegments'
+import useLyric from 'Hooks/useLyric'
 
 const Sidebar: FC = () => {
 	const [SpotifyTrackID, SetSpotifyTrackID] = useState<string>('')
@@ -20,19 +22,27 @@ const Sidebar: FC = () => {
 		TextFontFamilyGenericName,
 	} = useContentStyles()
 
+	const { SetLyricSegments } = useLyric()
+
 	const FontSizeInputId = useId()
 	const TextColorInputId = useId()
 	const TextFontFamilyGenericNameInputId = useId()
 	const SpotifyTrackIDForImportID = useId()
 
-	const ImportLyricFromSpotify = useCallback(() => {
+	const ImportLyricFromSpotify = useCallback(async () => {
 		if (
 			!confirm(
 				'Importing lyric from spotify will erase current lyric. Are you sure?',
 			)
 		)
 			return
-	}, [])
+
+		const lyricSegments = await SpotifyToLyricSegments(SpotifyTrackID)
+
+		if (lyricSegments[0]) return alert(lyricSegments[1])
+
+		SetLyricSegments(lyricSegments[1])
+	}, [SetLyricSegments, SpotifyTrackID])
 
 	return (
 		<Container>
