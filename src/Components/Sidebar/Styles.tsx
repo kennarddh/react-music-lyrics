@@ -45,9 +45,14 @@ export const Button = styled.button`
 
 	padding: 10px 20px;
 
-	background-color: #ddd;
+	background-color: #f90;
+	color: #fff;
 
 	cursor: pointer;
+
+	&:hover {
+		outline: 4px solid #ccc;
+	}
 `
 
 export const Header = styled.h3``
