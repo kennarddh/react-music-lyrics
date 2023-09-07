@@ -1,13 +1,15 @@
-import { FC, useId, useCallback, useState } from 'react'
+import { FC, useCallback, useId, useState } from 'react'
 
-import useFullScreen from 'Hooks/useFullScreen'
-import useContentStyles from 'Hooks/useContentStyles'
-
-import { Container, Label, Input, Button, Header } from './Styles'
 import Clamp from 'Utils/Clamp'
-import FontFamilyGenericNames from 'Constants/FontFamilyGenericNames'
 import SpotifyToLyricSegments from 'Utils/SpotifyToLyricSegments'
+
+import useContentStyles from 'Hooks/useContentStyles'
+import useFullScreen from 'Hooks/useFullScreen'
 import useLyric from 'Hooks/useLyric'
+
+import FontFamilyGenericNames from 'Constants/FontFamilyGenericNames'
+
+import { Button, Container, Header, Input, Label } from './Styles'
 
 const Sidebar: FC = () => {
 	const [SpotifyTrackID, SetSpotifyTrackID] = useState<string>('')

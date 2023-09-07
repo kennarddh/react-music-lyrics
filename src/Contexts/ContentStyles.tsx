@@ -1,5 +1,6 @@
-import FontFamilyGenericNames from 'Constants/FontFamilyGenericNames'
 import { FC, ReactNode, createContext, useState } from 'react'
+
+import FontFamilyGenericNames from 'Constants/FontFamilyGenericNames'
 
 interface IContentStylesContext {
 	FontSize: number

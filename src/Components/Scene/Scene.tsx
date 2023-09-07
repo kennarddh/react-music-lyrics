@@ -1,18 +1,18 @@
 import { FC, useEffect } from 'react'
 
-import useFullScreen from 'Hooks/useFullScreen'
-import useContentStyles from 'Hooks/useContentStyles'
-import useLyric from 'Hooks/useLyric'
+import Timeline from 'Components/Timeline/Timeline'
 
 import { ILyricSegment } from 'Contexts/Lyric'
 
-import Timeline from 'Components/Timeline/Timeline'
+import useContentStyles from 'Hooks/useContentStyles'
+import useFullScreen from 'Hooks/useFullScreen'
+import useLyric from 'Hooks/useLyric'
 
 import {
+	BackgroundImage,
 	Container,
 	Content,
 	ContentContainer,
-	BackgroundImage,
 	Text,
 } from './Styles'
 

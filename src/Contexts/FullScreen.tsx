@@ -1,12 +1,12 @@
 import {
 	FC,
 	ReactNode,
+	RefObject,
 	createContext,
 	useCallback,
-	useRef,
-	useMemo,
-	RefObject,
 	useEffect,
+	useMemo,
+	useRef,
 } from 'react'
 
 interface IFullScreenContext {
