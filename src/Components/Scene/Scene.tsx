@@ -1,5 +1,9 @@
 import { FC } from 'react'
 
+import useFullScreen from 'Hooks/useFullScreen'
+import useContentStyles from 'Hooks/useContentStyles'
+import useLyric from 'Hooks/useLyric'
+
 import {
 	Container,
 	Content,
@@ -10,13 +14,12 @@ import {
 	TimelineContent,
 } from './Styles'
 
-import useFullScreen from 'Hooks/useFullScreen'
-import useContentStyles from 'Hooks/useContentStyles'
-
 const Scene: FC = () => {
 	const { FullScreenElementRef } = useFullScreen()
 	const { FontSize, TextColor, TextFontFamilyGenericName } =
 		useContentStyles()
+
+	const { LyricSegments } = useLyric()
 
 	return (
 		<Container>
@@ -35,11 +38,11 @@ const Scene: FC = () => {
 				</Content>
 			</ContentContainer>
 			<Timeline>
-				<TimelineContent>
-					Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-					Quo, delectus. Lorem, ipsum dolor sit amet consectetur
-					adipisicing elit. Quo, delectus.
-				</TimelineContent>
+				{LyricSegments.map(segment => (
+					<TimelineContent key={segment.id}>
+						{segment.words}
+					</TimelineContent>
+				))}
 			</Timeline>
 		</Container>
 	)
