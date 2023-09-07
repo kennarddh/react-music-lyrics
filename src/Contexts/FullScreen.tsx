@@ -9,23 +9,25 @@ import {
 	useEffect,
 } from 'react'
 
-interface IPagesContext {
+interface IFullScreenContext {
 	IsFullScreen: boolean
 	SetIsFullScreen: (title: boolean) => void
 	FullScreenElementRef: RefObject<HTMLDivElement>
 }
 
-interface IPagesContextProvider {
+interface IFullScreenContextProvider {
 	children: ReactNode
 }
 
-const FullScreenContext = createContext<IPagesContext>({
+const FullScreenContext = createContext<IFullScreenContext>({
 	IsFullScreen: false,
 	SetIsFullScreen: () => undefined,
 	FullScreenElementRef: {} as RefObject<HTMLDivElement>,
 })
 
-export const FullScreenProvider: FC<IPagesContextProvider> = ({ children }) => {
+export const FullScreenProvider: FC<IFullScreenContextProvider> = ({
+	children,
+}) => {
 	const FullScreenElementRef = useRef<HTMLDivElement>(null)
 
 	const SetIsFullScreen = useCallback((isFullScreen: boolean) => {
