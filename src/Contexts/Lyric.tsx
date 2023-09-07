@@ -18,6 +18,10 @@ interface ILyricContext {
 	SetCurrentSegmentID: (newID: UUID | null) => void
 
 	GetLyricSegmentByID: (id: UUID) => ILyricSegment | null
+
+	GetSegmentIndexByID: (id: UUID) => number | null
+	GetNextSegmentID: (id: UUID) => ILyricSegment | null
+	GetPreviousSegmentID: (id: UUID) => ILyricSegment | null
 }
 
 interface ILyricContextProvider {
@@ -34,6 +38,10 @@ const LyricContext = createContext<ILyricContext>({
 	SetCurrentSegmentID: () => undefined,
 
 	GetLyricSegmentByID: () => null,
+
+	GetSegmentIndexByID: () => null,
+	GetNextSegmentID: () => null,
+	GetPreviousSegmentID: () => null,
 })
 
 export const LyricProvider: FC<ILyricContextProvider> = ({ children }) => {
@@ -72,10 +80,37 @@ export const LyricProvider: FC<ILyricContextProvider> = ({ children }) => {
 	}, [])
 
 	const GetLyricSegmentByID = useCallback(
-		(id: UUID) => {
-			return LyricSegments.find(({ id: iterID }) => id === iterID) ?? null
-		},
+		(id: UUID) =>
+			LyricSegments.find(({ id: iterID }) => id === iterID) ?? null,
 		[LyricSegments],
+	)
+
+	const GetSegmentIndexByID = useCallback(
+		(id: UUID) =>
+			LyricSegments.findIndex(({ id: iterID }) => id === iterID),
+		[LyricSegments],
+	)
+
+	const GetNextSegmentID = useCallback(
+		(id: UUID) => {
+			const currentIndex = GetSegmentIndexByID(id)
+
+			if (currentIndex === LyricSegments.length - 1) return null
+
+			return LyricSegments[currentIndex + 1]
+		},
+		[GetSegmentIndexByID, LyricSegments],
+	)
+
+	const GetPreviousSegmentID = useCallback(
+		(id: UUID) => {
+			const currentIndex = GetSegmentIndexByID(id)
+
+			if (currentIndex === 0) return null
+
+			return LyricSegments[currentIndex - 1]
+		},
+		[GetSegmentIndexByID, LyricSegments],
 	)
 
 	return (
@@ -87,6 +122,9 @@ export const LyricProvider: FC<ILyricContextProvider> = ({ children }) => {
 				CurrentSegmentID,
 				SetCurrentSegmentID,
 				GetLyricSegmentByID,
+				GetSegmentIndexByID,
+				GetNextSegmentID,
+				GetPreviousSegmentID,
 			}}
 		>
 			{children}
