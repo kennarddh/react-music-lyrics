@@ -1,4 +1,11 @@
-import { FC, ReactNode, createContext, useCallback, useState } from 'react'
+import {
+	FC,
+	ReactNode,
+	createContext,
+	useCallback,
+	useEffect,
+	useState,
+} from 'react'
 
 import { UUID } from 'Types'
 
@@ -25,6 +32,11 @@ interface ILyricContext {
 	GetSegmentIndexByID: (id: UUID) => number | null
 	GetNextSegmentID: (id: UUID) => ILyricSegment | null
 	GetPreviousSegmentID: (id: UUID) => ILyricSegment | null
+
+	IsEditing: boolean
+	SetIsEditing: (isEditing: boolean) => void
+	IsAllowedToEdit: boolean
+	SetIsAllowedToEdit: (isEditing: boolean) => void
 }
 
 interface ILyricContextProvider {
@@ -46,6 +58,11 @@ const LyricContext = createContext<ILyricContext>({
 	GetSegmentIndexByID: () => null,
 	GetNextSegmentID: () => null,
 	GetPreviousSegmentID: () => null,
+
+	IsEditing: false,
+	SetIsEditing: () => undefined,
+	IsAllowedToEdit: true,
+	SetIsAllowedToEdit: () => undefined,
 })
 
 export const LyricProvider: FC<ILyricContextProvider> = ({ children }) => {
@@ -65,6 +82,9 @@ export const LyricProvider: FC<ILyricContextProvider> = ({ children }) => {
 	const [CurrentSegmentID, SetCurrentSegmentID] = useState<UUID | null>(
 		() => LyricSegments[0]?.id ?? null,
 	)
+
+	const [IsEditing, SetIsEditingBase] = useState<boolean>(false)
+	const [IsAllowedToEdit, SetIsAllowedToEdit] = useState<boolean>(true)
 
 	const EditLyricSegment = useCallback(
 		(id: UUID, newSegment: Omit<ILyricSegment, 'id'>) => {
@@ -126,6 +146,19 @@ export const LyricProvider: FC<ILyricContextProvider> = ({ children }) => {
 		[GetSegmentIndexByID, LyricSegments],
 	)
 
+	const SetIsEditing = useCallback(
+		(isEditing: boolean) => {
+			if (!IsAllowedToEdit && isEditing) return false
+
+			SetIsEditingBase(isEditing)
+		},
+		[IsAllowedToEdit],
+	)
+
+	useEffect(() => {
+		if (!IsAllowedToEdit && IsEditing) SetIsEditing(false)
+	}, [IsAllowedToEdit, IsEditing, SetIsEditing])
+
 	return (
 		<LyricContext.Provider
 			value={{
@@ -139,6 +172,10 @@ export const LyricProvider: FC<ILyricContextProvider> = ({ children }) => {
 				GetSegmentIndexByID,
 				GetNextSegmentID,
 				GetPreviousSegmentID,
+				IsEditing,
+				SetIsEditing,
+				IsAllowedToEdit,
+				SetIsAllowedToEdit,
 			}}
 		>
 			{children}
