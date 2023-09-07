@@ -2,6 +2,8 @@ import { FC, ReactNode, createContext, useCallback, useState } from 'react'
 
 import { UUID } from 'Types'
 
+import ArrayInsertAtIndexImmutable from 'Utils/ArrayInsertAtIndexImmutable'
+
 export interface ILyricSegment {
 	id: UUID
 	timeStartMS: number
@@ -12,7 +14,7 @@ interface ILyricContext {
 	LyricSegments: ILyricSegment[]
 	SetLyricSegments: (segments: ILyricSegment[]) => void
 
-	AddLyricSegment: (newSegment: ILyricSegment) => void
+	AddLyricSegment: (newSegment: ILyricSegment, index?: number) => void
 	EditLyricSegment: (id: UUID, newSegment: Omit<ILyricSegment, 'id'>) => void
 
 	CurrentSegmentID: UUID | null
@@ -77,9 +79,18 @@ export const LyricProvider: FC<ILyricContextProvider> = ({ children }) => {
 		[],
 	)
 
-	const AddLyricSegment = useCallback((newSegment: ILyricSegment) => {
-		SetLyricSegments(prev => [...prev, newSegment])
-	}, [])
+	const AddLyricSegment = useCallback(
+		(newSegment: ILyricSegment, index?: number) => {
+			SetLyricSegments(prev =>
+				ArrayInsertAtIndexImmutable(
+					prev,
+					index ?? prev.length,
+					newSegment,
+				),
+			)
+		},
+		[],
+	)
 
 	const GetLyricSegmentByID = useCallback(
 		(id: UUID) =>
