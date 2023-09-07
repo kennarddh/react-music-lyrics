@@ -4,16 +4,17 @@ import useFullScreen from 'Hooks/useFullScreen'
 import useContentStyles from 'Hooks/useContentStyles'
 import useLyric from 'Hooks/useLyric'
 
+import { ILyricSegment } from 'Contexts/Lyric'
+
+import Timeline from 'Components/Timeline/Timeline'
+
 import {
 	Container,
 	Content,
 	ContentContainer,
 	BackgroundImage,
 	Text,
-	Timeline,
-	TimelineContent,
 } from './Styles'
-import { ILyricSegment } from 'Contexts/Lyric'
 
 const Scene: FC = () => {
 	const { FullScreenElementRef } = useFullScreen()
@@ -21,7 +22,6 @@ const Scene: FC = () => {
 		useContentStyles()
 
 	const {
-		LyricSegments,
 		CurrentSegmentID,
 		SetCurrentSegmentID,
 		GetLyricSegmentByID,
@@ -72,17 +72,7 @@ const Scene: FC = () => {
 					</Text>
 				</Content>
 			</ContentContainer>
-			<Timeline>
-				{LyricSegments.map(segment => (
-					<TimelineContent
-						key={segment.id}
-						onClick={() => SetCurrentSegmentID(segment.id)}
-						$isActive={segment.id === CurrentSegmentID}
-					>
-						{segment.words}
-					</TimelineContent>
-				))}
-			</Timeline>
+			<Timeline />
 		</Container>
 	)
 }
