@@ -2,7 +2,7 @@ import { FC, ReactNode, createContext } from 'react'
 
 import { UUID } from 'Types'
 
-export interface ILyricWord {
+export interface ILyricSegment {
 	id: UUID
 	timeStartMS: number
 	words: string
