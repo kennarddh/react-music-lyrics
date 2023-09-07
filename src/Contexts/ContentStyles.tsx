@@ -27,7 +27,7 @@ const ContentStylesContext = createContext<IContentStylesContext>({
 export const ContentStylesProvider: FC<IContentStylesContextProvider> = ({
 	children,
 }) => {
-	const [FontSize, SetFontSize] = useState<number>(50)
+	const [FontSize, SetFontSize] = useState<number>(10)
 	const [TextColor, SetTextColor] = useState<string>('#ffffff')
 	const [TextFontFamilyGenericName, SetTextFontFamilyGenericName] =
 		useState<string>(FontFamilyGenericNames.SansSerif)

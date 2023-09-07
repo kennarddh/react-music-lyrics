@@ -56,11 +56,12 @@ const Sidebar: FC = () => {
 					id={FontSizeInputId}
 					type='number'
 					min={0}
-					max={200}
+					max={50}
+					step={0.1}
 					value={FontSize}
 					onChange={event =>
 						SetFontSize(
-							Clamp(parseFloat(event.target.value), 0, 200),
+							Clamp(parseFloat(event.target.value), 0, 50),
 						)
 					}
 				/>
