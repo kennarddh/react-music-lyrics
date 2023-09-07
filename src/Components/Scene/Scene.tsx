@@ -77,7 +77,7 @@ const Scene: FC = () => {
 					<BackgroundImage src='/background.jpg' alt='backround' />
 					<TextArea
 						style={{
-							fontSize: FontSize,
+							fontSize: `${FontSize}cqw`,
 							color: TextColor,
 							fontFamily: TextFontFamilyGenericName,
 						}}
