@@ -32,9 +32,7 @@ export const FullScreenProvider: FC<IPagesContextProvider> = ({ children }) => {
 		if (!navigator.userActivation.isActive) return
 
 		if (isFullScreen)
-			return void document
-				.querySelector('#root :nth-child(1) div')
-				?.requestFullscreen()
+			return void FullScreenElementRef?.current?.requestFullscreen()
 
 		if (document.fullscreenElement) document.exitFullscreen()
 
