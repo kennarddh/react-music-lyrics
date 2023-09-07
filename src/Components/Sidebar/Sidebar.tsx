@@ -4,6 +4,7 @@ import useFullScreen from 'Hooks/useFullScreen'
 import useContentStyles from 'Hooks/useContentStyles'
 
 import { Container, Label, Input, Button } from './Styles'
+import Clamp from 'Utils/Clamp'
 
 const Sidebar: FC = () => {
 	const { SetIsFullScreen } = useFullScreen()
@@ -21,7 +22,9 @@ const Sidebar: FC = () => {
 					max={100}
 					value={FontSize}
 					onChange={event =>
-						SetFontSize(parseFloat(event.target.value))
+						SetFontSize(
+							Clamp(parseFloat(event.target.value), 0, 100),
+						)
 					}
 				/>
 			</Label>
