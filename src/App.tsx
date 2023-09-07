@@ -7,15 +7,18 @@ import { FullScreenProvider } from 'Contexts/FullScreen'
 
 import { Container } from './AppStyles'
 import { LyricsProvider } from 'Contexts/Lyrics'
+import { ContentStylesProvider } from 'Contexts/ContentStyles'
 
 const App: FC = () => {
 	return (
 		<FullScreenProvider>
 			<LyricsProvider>
-				<Container>
-					<Scene />
-					<Sidebar />
-				</Container>
+				<ContentStylesProvider>
+					<Container>
+						<Scene />
+						<Sidebar />
+					</Container>
+				</ContentStylesProvider>
 			</LyricsProvider>
 		</FullScreenProvider>
 	)
