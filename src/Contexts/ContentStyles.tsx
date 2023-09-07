@@ -22,7 +22,7 @@ export const ContentStylesProvider: FC<IContentStylesContextProvider> = ({
 	children,
 }) => {
 	const [FontSize, SetFontSize] = useState<number>(24)
-	const [TextColor, SetTextColor] = useState<string>('#000')
+	const [TextColor, SetTextColor] = useState<string>('#000000')
 
 	return (
 		<ContentStylesContext.Provider
