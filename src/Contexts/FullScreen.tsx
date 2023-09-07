@@ -37,7 +37,22 @@ export const FullScreenProvider: FC<IPagesContextProvider> = ({ children }) => {
 		if (document.fullscreenElement) document.exitFullscreen()
 	}, [])
 
-	useEffect(() => {})
+	useEffect(() => {
+		const OnKeyDown = (event: KeyboardEvent) => {
+			if (event.key === 'F11') {
+				if (document.fullscreenElement) document.exitFullscreen()
+
+				FullScreenElementRef?.current?.requestFullscreen()
+			}
+
+			if (event.key === 'Escape' && document.fullscreenElement)
+				document.exitFullscreen()
+		}
+
+		addEventListener('keydown', OnKeyDown)
+
+		return () => removeEventListener('keydown', OnKeyDown)
+	}, [])
 
 	const IsFullScreen = useMemo(() => !!document.fullscreenElement, [])
 
