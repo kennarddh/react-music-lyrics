@@ -25,7 +25,7 @@ const Sidebar: FC = () => {
 	const TextFontFamilyGenericNameInputId = useId()
 	const SpotifyTrackIDForImportID = useId()
 
-	const ImportLyricsFromSpotify = useCallback(() => {
+	const ImportLyricFromSpotify = useCallback(() => {
 		if (
 			!confirm(
 				'Importing lyric from spotify will erase current lyric. Are you sure?',
@@ -90,8 +90,8 @@ const Sidebar: FC = () => {
 					onChange={event => SetSpotifyTrackID(event.target.value)}
 				/>
 			</Label>
-			<Button onClick={ImportLyricsFromSpotify}>
-				Import Lyrics From Spotify
+			<Button onClick={ImportLyricFromSpotify}>
+				Import Lyric From Spotify
 			</Button>
 			<Button onClick={() => SetIsFullScreen(true)}>
 				Change to full screen
