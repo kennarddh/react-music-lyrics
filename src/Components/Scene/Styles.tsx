@@ -58,9 +58,13 @@ export const Timeline = styled.div`
 	align-items: center;
 	flex-direction: row;
 	gap: 10px;
+
+	overflow-x: scroll;
 `
 
 export const TimelineContent = styled.p`
+	flex-shrink: 0;
+
 	width: 30%;
 	height: 90%;
 
