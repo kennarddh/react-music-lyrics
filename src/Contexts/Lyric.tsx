@@ -10,6 +10,7 @@ export interface ILyricSegment {
 
 interface ILyricContext {
 	LyricSegments: ILyricSegment[]
+	SetLyricSegments: (segments: ILyricSegment[]) => void
 
 	AddLyricSegment: (newSegment: ILyricSegment) => void
 	EditLyricSegment: (id: UUID, newSegment: Omit<ILyricSegment, 'id'>) => void
@@ -30,6 +31,7 @@ interface ILyricContextProvider {
 
 const LyricContext = createContext<ILyricContext>({
 	LyricSegments: [],
+	SetLyricSegments: () => undefined,
 
 	AddLyricSegment: () => undefined,
 	EditLyricSegment: () => undefined,
@@ -117,6 +119,7 @@ export const LyricProvider: FC<ILyricContextProvider> = ({ children }) => {
 		<LyricContext.Provider
 			value={{
 				LyricSegments,
+				SetLyricSegments,
 				AddLyricSegment,
 				EditLyricSegment,
 				CurrentSegmentID,
