@@ -5,6 +5,7 @@ import useContentStyles from 'Hooks/useContentStyles'
 
 import { Container, Label, Input, Button } from './Styles'
 import Clamp from 'Utils/Clamp'
+import FontFamilyGenericNames from 'Constants/FontFamilyGenericNames'
 
 const Sidebar: FC = () => {
 	const { SetIsFullScreen } = useFullScreen()
@@ -36,6 +37,18 @@ const Sidebar: FC = () => {
 					value={TextColor}
 					onChange={event => SetTextColor(event.target.value)}
 				/>
+			</Label>
+			<Label htmlFor='textFontFamilyGenericNames'>
+				Text Font Family Generic
+				<select id='textFontFamilyGenericNames'>
+					{Object.entries(FontFamilyGenericNames).map(
+						([name, value]) => (
+							<option value={value} key={value}>
+								{name}
+							</option>
+						),
+					)}
+				</select>
 			</Label>
 			<Button onClick={() => SetIsFullScreen(true)}>
 				Change to full screen
