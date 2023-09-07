@@ -22,6 +22,9 @@ export const Label = styled.label`
 
 export const Input = styled.input`
 	width: 70%;
+
+	border: none;
+	border-radius: 4px;
 `
 
 export const Button = styled.button`
