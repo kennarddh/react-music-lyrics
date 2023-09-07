@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useId } from 'react'
 
 import useFullScreen from 'Hooks/useFullScreen'
 import useContentStyles from 'Hooks/useContentStyles'
@@ -18,12 +18,16 @@ const Sidebar: FC = () => {
 		TextFontFamilyGenericName,
 	} = useContentStyles()
 
+	const FontSizeInputId = useId()
+	const TextColorInputId = useId()
+	const TextFontFamilyGenericNameInputId = useId()
+
 	return (
 		<Container>
-			<Label htmlFor='fontSize'>
+			<Label htmlFor={FontSizeInputId}>
 				Font size
 				<Input
-					id='fontSize'
+					id={FontSizeInputId}
 					type='number'
 					min={0}
 					max={100}
@@ -35,20 +39,20 @@ const Sidebar: FC = () => {
 					}
 				/>
 			</Label>
-			<Label htmlFor='color'>
+			<Label htmlFor={TextColorInputId}>
 				Text color
 				<Input
-					id='color'
+					id={TextColorInputId}
 					type='color'
 					value={TextColor}
 					onChange={event => SetTextColor(event.target.value)}
 				/>
 			</Label>
-			<Label htmlFor='textFontFamilyGenericName'>
+			<Label htmlFor={TextFontFamilyGenericNameInputId}>
 				Text Font Family Generic
 				<Input
 					as='select'
-					id='textFontFamilyGenericName'
+					id={TextFontFamilyGenericNameInputId}
 					value={TextFontFamilyGenericName}
 					onChange={event =>
 						SetTextFontFamilyGenericName(event.target.value)
