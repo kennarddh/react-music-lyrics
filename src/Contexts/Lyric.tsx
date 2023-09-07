@@ -27,7 +27,18 @@ const LyricContext = createContext<ILyricContext>({
 })
 
 export const LyricProvider: FC<ILyricContextProvider> = ({ children }) => {
-	const [LyricSegments, SetLyricSegments] = useState<ILyricSegment[]>([])
+	const [LyricSegments, SetLyricSegments] = useState<ILyricSegment[]>([
+		{
+			id: '504da5eb-1e22-48f6-b034-60bfe3a31b7b',
+			timeStartMS: 2000,
+			words: 'test lorem ipsum.',
+		},
+		{
+			id: 'b9c99bf1-94bf-4735-bb80-8d89329890d7',
+			timeStartMS: 5000,
+			words: 'Dolor sit amet.',
+		},
+	])
 
 	const EditLyricSegment = useCallback(
 		(id: UUID, newSegment: Omit<ILyricSegment, 'id'>) => {
