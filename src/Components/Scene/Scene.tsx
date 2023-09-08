@@ -38,6 +38,8 @@ const Scene: FC = () => {
 		EditLyricSegment,
 		LyricSegments,
 		IsAllowedToEdit,
+		SetIsEditing,
+		IsEditing,
 	} = useLyric()
 
 	const TextRef = useRef<HTMLDivElement>(null)
@@ -119,6 +121,8 @@ const Scene: FC = () => {
 								? GetLyricSegmentByID(CurrentSegmentID)?.words
 								: ''
 						}
+						onFocus={() => SetIsEditing(true)}
+						onBlur={() => SetIsEditing(false)}
 					>
 						{/* {CurrentSegmentID
 							? GetLyricSegmentByID(CurrentSegmentID)?.words
