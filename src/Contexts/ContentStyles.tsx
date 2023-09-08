@@ -28,6 +28,10 @@ interface IContentStylesContext {
 	) => void
 	TextAlignState: TextAlign
 	SetTextAlignState: (textAlign: TextAlign) => void
+	LetterSpacing: number
+	SetLetterSpacing: (letterSpacing: number) => void
+	WordSpacing: number
+	SetWordSpacing: (wordSpacing: number) => void
 }
 
 interface IContentStylesContextProvider {
@@ -51,6 +55,10 @@ const ContentStylesContext = createContext<IContentStylesContext>({
 	SetFontWeightState: () => undefined,
 	TextAlignState: TextAlign.Center,
 	SetTextAlignState: () => undefined,
+	LetterSpacing: 0,
+	SetLetterSpacing: () => undefined,
+	WordSpacing: 0,
+	SetWordSpacing: () => undefined,
 })
 
 export const ContentStylesProvider: FC<IContentStylesContextProvider> = ({
@@ -75,6 +83,8 @@ export const ContentStylesProvider: FC<IContentStylesContextProvider> = ({
 	const [TextAlignState, SetTextAlignState] = useState<TextAlign>(
 		TextAlign.Center,
 	)
+	const [LetterSpacing, SetLetterSpacing] = useState<number>(0)
+	const [WordSpacing, SetWordSpacing] = useState<number>(0)
 
 	return (
 		<ContentStylesContext.Provider
@@ -95,6 +105,10 @@ export const ContentStylesProvider: FC<IContentStylesContextProvider> = ({
 				SetFontWeightState,
 				TextAlignState,
 				SetTextAlignState,
+				LetterSpacing,
+				SetLetterSpacing,
+				WordSpacing,
+				SetWordSpacing,
 			}}
 		>
 			{children}
