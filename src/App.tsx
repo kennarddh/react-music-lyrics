@@ -1,5 +1,8 @@
 import { FC } from 'react'
 
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
+
 import Scene from 'Components/Scene/Scene'
 import Sidebar from 'Components/Sidebar/Sidebar'
 
@@ -11,16 +14,18 @@ import { Container } from './AppStyles'
 
 const App: FC = () => {
 	return (
-		<FullScreenProvider>
-			<LyricProvider>
-				<ContentStylesProvider>
-					<Container>
-						<Scene />
-						<Sidebar />
-					</Container>
-				</ContentStylesProvider>
-			</LyricProvider>
-		</FullScreenProvider>
+		<DndProvider backend={HTML5Backend}>
+			<FullScreenProvider>
+				<LyricProvider>
+					<ContentStylesProvider>
+						<Container>
+							<Scene />
+							<Sidebar />
+						</Container>
+					</ContentStylesProvider>
+				</LyricProvider>
+			</FullScreenProvider>
+		</DndProvider>
 	)
 }
 
