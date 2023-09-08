@@ -27,6 +27,8 @@ const Scene: FC = () => {
 		FontStyleState,
 		FontWeightState,
 		TextAlignState,
+		LetterSpacing,
+		WordSpacing,
 	} = useContentStyles()
 
 	const {
@@ -113,6 +115,8 @@ const Scene: FC = () => {
 							fontStyle: FontStyleState,
 							fontWeight: FontWeightState,
 							textAlign: TextAlignState,
+							letterSpacing: LetterSpacing,
+							wordSpacing: WordSpacing,
 						}}
 						contentEditable={IsAllowedToEdit}
 						suppressContentEditableWarning
