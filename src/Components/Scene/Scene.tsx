@@ -47,7 +47,6 @@ const Scene: FC = () => {
 	useEffect(() => {
 		const OnKeyDown = (event: KeyboardEvent) => {
 			if (!CurrentSegmentID) return
-			console.log(IsEditing)
 			if (IsEditing) return
 
 			let targetSegment: ILyricSegment | null = null
