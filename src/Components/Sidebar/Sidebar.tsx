@@ -25,7 +25,7 @@ import FontStyle from 'Constants/FontStyle'
 import FontWeight from 'Constants/FontWeight'
 import TextAlign from 'Constants/TextAlign'
 
-import { Button, Container, Header } from './Styles'
+import { Button, Container, Figure, Header } from './Styles'
 
 const Sidebar: FC = () => {
 	const [SpotifyTrackID, SetSpotifyTrackID] = useState<string>('')
@@ -202,33 +202,36 @@ const Sidebar: FC = () => {
 					))}
 				</Input>
 			</Label>
-			<IconRadioGroup
-				options={[
-					{
-						icon: faAlignLeft,
-						value: TextAlign.Left,
-						id: TextAlignLeftRadioID,
-					},
-					{
-						icon: faAlignCenter,
-						value: TextAlign.Center,
-						id: TextAlignCenterRadioID,
-					},
-					{
-						icon: faAlignRight,
-						value: TextAlign.Right,
-						id: TextAlignRightRadioID,
-					},
-					{
-						icon: faAlignJustify,
-						value: TextAlign.Justify,
-						id: TextAlignJustifyRadioID,
-					},
-				]}
-				value={TextAlignState}
-				onChange={value => SetTextAlignState(value as TextAlign)}
-				name='textAlign'
-			/>
+			<Figure>
+				<figcaption>Text Align</figcaption>
+				<IconRadioGroup
+					options={[
+						{
+							icon: faAlignLeft,
+							value: TextAlign.Left,
+							id: TextAlignLeftRadioID,
+						},
+						{
+							icon: faAlignCenter,
+							value: TextAlign.Center,
+							id: TextAlignCenterRadioID,
+						},
+						{
+							icon: faAlignRight,
+							value: TextAlign.Right,
+							id: TextAlignRightRadioID,
+						},
+						{
+							icon: faAlignJustify,
+							value: TextAlign.Justify,
+							id: TextAlignJustifyRadioID,
+						},
+					]}
+					value={TextAlignState}
+					onChange={value => SetTextAlignState(value as TextAlign)}
+					name='textAlign'
+				/>
+			</Figure>
 			<Header>Import From Spotify</Header>
 			<Label htmlFor={SpotifyTrackIDForImportID}>
 				Spotify Track ID

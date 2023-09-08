@@ -34,3 +34,9 @@ export const Button = styled.button`
 `
 
 export const Header = styled.h3``
+
+export const Figure = styled.figure`
+	display: flex;
+	justify-content: space-between;
+	flex-direction: row;
+`
