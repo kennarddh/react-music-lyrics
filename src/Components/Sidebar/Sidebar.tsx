@@ -63,6 +63,8 @@ const Sidebar: FC = () => {
 	const TextAlignCenterRadioID = useId()
 	const TextAlignRightRadioID = useId()
 	const TextAlignJustifyRadioID = useId()
+	const LetterSpacingInputID = useId()
+	const WordSpacingInputID = useId()
 
 	const SpotifyTrackIDForImportID = useId()
 
@@ -232,6 +234,38 @@ const Sidebar: FC = () => {
 					name='textAlign'
 				/>
 			</Figure>
+			<Label htmlFor={LetterSpacingInputID}>
+				Letter Spacing
+				<Input
+					id={LetterSpacingInputID}
+					type='number'
+					min={0}
+					max={50}
+					step={1}
+					value={FontSize}
+					onChange={event =>
+						SetFontSize(
+							Clamp(parseFloat(event.target.value), 0, 50),
+						)
+					}
+				/>
+			</Label>
+			<Label htmlFor={WordSpacingInputID}>
+				Word Spacing
+				<Input
+					id={WordSpacingInputID}
+					type='number'
+					min={0}
+					max={50}
+					step={1}
+					value={FontSize}
+					onChange={event =>
+						SetFontSize(
+							Clamp(parseFloat(event.target.value), 0, 50),
+						)
+					}
+				/>
+			</Label>
 			<Header>Import From Spotify</Header>
 			<Label htmlFor={SpotifyTrackIDForImportID}>
 				Spotify Track ID
