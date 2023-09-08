@@ -2,6 +2,7 @@ import { css, styled } from 'styled-components'
 
 export const Container = styled.div`
 	width: 25%;
+	height: 100%;
 
 	padding: 20px;
 
@@ -12,6 +13,8 @@ export const Container = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
+
+	overflow-y: scroll;
 `
 
 export const Label = styled.label`
@@ -45,11 +48,11 @@ export const Input = styled.input<{ $hidden?: boolean }>`
 	${({ $hidden }) =>
 		$hidden
 			? css`
-				width: 0,
-				height: 0;
-				position: absolute;
-				visibility: hidden;
-				`
+					width: 0;
+					height: 0;
+					position: absolute;
+					visibility: hidden;
+			  `
 			: ''}
 `
 
