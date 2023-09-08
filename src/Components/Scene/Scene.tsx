@@ -72,10 +72,6 @@ const Scene: FC = () => {
 
 			const target = event.target as HTMLDivElement
 
-			const selection = document.getSelection()
-
-			console.log({ selection, range: selection?.getRangeAt(0) })
-
 			EditLyricSegment(CurrentSegmentID, {
 				...(GetLyricSegmentByID(CurrentSegmentID) as ILyricSegment),
 				words: target.innerText,
