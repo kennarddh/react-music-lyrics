@@ -52,10 +52,9 @@ export const TextArea = styled.div`
 	align-items: center;
 	flex-direction: column;
 
-	text-align: center;
-
 	background-color: transparent;
 
 	outline: none;
 	border: none;
+	word-break: break-word;
 `
