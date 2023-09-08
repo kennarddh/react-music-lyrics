@@ -1,5 +1,9 @@
 import { FC, useCallback, useId, useState } from 'react'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import { faAlignLeft } from '@fortawesome/free-solid-svg-icons'
+
 import Clamp from 'Utils/Clamp'
 import SpotifyToLyricSegments from 'Utils/SpotifyToLyricSegments'
 
@@ -45,6 +49,7 @@ const Sidebar: FC = () => {
 	const FontStretchInputID = useId()
 	const FontStyleInputID = useId()
 	const FontWeightInputID = useId()
+	const TextAlignLeftRadioID = useId()
 
 	const SpotifyTrackIDForImportID = useId()
 
@@ -183,6 +188,24 @@ const Sidebar: FC = () => {
 						</option>
 					))}
 				</Input>
+			</Label>
+			<Label htmlFor={TextAlignLeftRadioID}>
+				<Input
+					type='radio'
+					id={TextAlignLeftRadioID}
+					value={FontWeightState}
+					onChange={event =>
+						SetFontWeightState(
+							event.target
+								.value as (typeof FontWeight)[keyof typeof FontWeight],
+						)
+					}
+					$hidden
+				/>
+				<FontAwesomeIcon
+					icon={faAlignLeft}
+					style={{ cursor: 'pointer' }}
+				/>
 			</Label>
 			<Header>Import From Spotify</Header>
 			<Label htmlFor={SpotifyTrackIDForImportID}>

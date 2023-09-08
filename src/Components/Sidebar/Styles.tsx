@@ -1,4 +1,4 @@
-import { styled } from 'styled-components'
+import { css, styled } from 'styled-components'
 
 export const Container = styled.div`
 	width: 25%;
@@ -20,7 +20,7 @@ export const Label = styled.label`
 	justify-content: space-between;
 `
 
-export const Input = styled.input`
+export const Input = styled.input<{ $hidden?: boolean }>`
 	width: 60%;
 
 	border: none;
@@ -37,6 +37,20 @@ export const Input = styled.input`
 	&::-moz-color-swatch {
 		border-radius: 4px;
 	}
+
+	&[type='radio']:checked + svg {
+		outline: 2px solid #f00;
+	}
+
+	${({ $hidden }) =>
+		$hidden
+			? css`
+				width: 0,
+				height: 0;
+				position: absolute;
+				visibility: hidden;
+				`
+			: ''}
 `
 
 export const Button = styled.button`
