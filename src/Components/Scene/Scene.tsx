@@ -36,8 +36,8 @@ const Scene: FC = () => {
 		GetNextSegmentID,
 		GetPreviousSegmentID,
 		EditLyricSegment,
-		SetIsEditing,
 		LyricSegments,
+		IsAllowedToEdit,
 	} = useLyric()
 
 	const TextRef = useRef<HTMLDivElement>(null)
@@ -110,11 +110,9 @@ const Scene: FC = () => {
 							fontWeight: FontWeightState,
 							textAlign: TextAlignState,
 						}}
-						contentEditable
+						contentEditable={IsAllowedToEdit}
 						suppressContentEditableWarning
 						onInput={OnTextChange}
-						onFocus={() => SetIsEditing(true)}
-						onBlur={() => SetIsEditing(false)}
 						ref={TextRef}
 						defaultValue={
 							CurrentSegmentID
