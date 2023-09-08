@@ -5,6 +5,7 @@ import FontKerning from 'Constants/FontKerning'
 import FontStretch from 'Constants/FontStretch'
 import FontStyle from 'Constants/FontStyle'
 import FontWeight from 'Constants/FontWeight'
+import TextAlign from 'Constants/TextAlign'
 
 interface IContentStylesContext {
 	FontSize: number
@@ -25,6 +26,8 @@ interface IContentStylesContext {
 	SetFontWeightState: (
 		fontWeight: (typeof FontWeight)[keyof typeof FontWeight],
 	) => void
+	TextAlignState: TextAlign
+	SetTextAlignState: (textAlign: TextAlign) => void
 }
 
 interface IContentStylesContextProvider {
@@ -46,6 +49,8 @@ const ContentStylesContext = createContext<IContentStylesContext>({
 	SetFontStyleState: () => undefined,
 	FontWeightState: FontWeight.Normal,
 	SetFontWeightState: () => undefined,
+	TextAlignState: TextAlign.Center,
+	SetTextAlignState: () => undefined,
 })
 
 export const ContentStylesProvider: FC<IContentStylesContextProvider> = ({
@@ -67,6 +72,9 @@ export const ContentStylesProvider: FC<IContentStylesContextProvider> = ({
 	const [FontWeightState, SetFontWeightState] = useState<
 		(typeof FontWeight)[keyof typeof FontWeight]
 	>(FontWeight.Normal)
+	const [TextAlignState, SetTextAlignState] = useState<TextAlign>(
+		TextAlign.Center,
+	)
 
 	return (
 		<ContentStylesContext.Provider
@@ -85,6 +93,8 @@ export const ContentStylesProvider: FC<IContentStylesContextProvider> = ({
 				SetFontStyleState,
 				FontWeightState,
 				SetFontWeightState,
+				TextAlignState,
+				SetTextAlignState,
 			}}
 		>
 			{children}
