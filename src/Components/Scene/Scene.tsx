@@ -18,8 +18,15 @@ import {
 
 const Scene: FC = () => {
 	const { FullScreenElementRef } = useFullScreen()
-	const { FontSize, TextColor, TextFontFamilyGenericName } =
-		useContentStyles()
+	const {
+		FontSize,
+		TextColor,
+		TextFontFamilyGenericName,
+		FontKerningState,
+		FontStretchState,
+		FontStyleState,
+		FontWeightState,
+	} = useContentStyles()
 
 	const {
 		CurrentSegmentID,
@@ -80,6 +87,10 @@ const Scene: FC = () => {
 							fontSize: `${FontSize}cqw`,
 							color: TextColor,
 							fontFamily: TextFontFamilyGenericName,
+							fontKerning: FontKerningState,
+							fontStretch: FontStretchState,
+							fontStyle: FontStyleState,
+							fontWeight: FontWeightState,
 						}}
 						value={
 							CurrentSegmentID
