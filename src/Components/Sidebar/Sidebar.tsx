@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { faAlignLeft } from '@fortawesome/free-solid-svg-icons'
 
+import Input from 'Components/Input/Input'
+
 import Clamp from 'Utils/Clamp'
 import SpotifyToLyricSegments from 'Utils/SpotifyToLyricSegments'
 
@@ -16,8 +18,9 @@ import FontKerning from 'Constants/FontKerning'
 import FontStretch from 'Constants/FontStretch'
 import FontStyle from 'Constants/FontStyle'
 import FontWeight from 'Constants/FontWeight'
+import TextAlign from 'Constants/TextAlign'
 
-import { Button, Container, Header, Input, Label } from './Styles'
+import { Button, Container, Header, Label } from './Styles'
 
 const Sidebar: FC = () => {
 	const [SpotifyTrackID, SetSpotifyTrackID] = useState<string>('')
@@ -38,6 +41,8 @@ const Sidebar: FC = () => {
 		SetFontStyleState,
 		FontWeightState,
 		SetFontWeightState,
+		TextAlignState,
+		SetTextAlignState,
 	} = useContentStyles()
 
 	const { SetLyricSegments, SetCurrentSegmentID } = useLyric()
@@ -193,14 +198,13 @@ const Sidebar: FC = () => {
 				<Input
 					type='radio'
 					id={TextAlignLeftRadioID}
-					value={FontWeightState}
+					value={TextAlign.Left}
+					checked={TextAlignState === TextAlign.Left}
 					onChange={event =>
-						SetFontWeightState(
-							event.target
-								.value as (typeof FontWeight)[keyof typeof FontWeight],
-						)
+						SetTextAlignState(event.target.value as TextAlign)
 					}
 					$hidden
+					name='left'
 				/>
 				<FontAwesomeIcon
 					icon={faAlignLeft}
