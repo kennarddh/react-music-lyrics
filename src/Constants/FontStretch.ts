@@ -1,6 +1,6 @@
 enum FontStretch {
 	Normal = 'normal',
-	UultraCondensed = 'ultra-condensed',
+	UltraCondensed = 'ultra-condensed',
 	ExtraCondensed = 'extra-condensed',
 	Condensed = 'condensed',
 	SemiCondensed = 'semi-condensed',
