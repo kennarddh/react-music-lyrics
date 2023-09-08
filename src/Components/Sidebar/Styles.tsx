@@ -17,12 +17,6 @@ export const Container = styled.div`
 	overflow-y: scroll;
 `
 
-export const Label = styled.label`
-	display: flex;
-
-	justify-content: space-between;
-`
-
 export const Button = styled.button`
 	border: none;
 	border-radius: 8px;

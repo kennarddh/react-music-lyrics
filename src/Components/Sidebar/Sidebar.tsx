@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAlignLeft } from '@fortawesome/free-solid-svg-icons'
 
 import Input from 'Components/Input/Input'
+import Label from 'Components/Label/Label'
 
 import Clamp from 'Utils/Clamp'
 import SpotifyToLyricSegments from 'Utils/SpotifyToLyricSegments'
@@ -20,7 +21,7 @@ import FontStyle from 'Constants/FontStyle'
 import FontWeight from 'Constants/FontWeight'
 import TextAlign from 'Constants/TextAlign'
 
-import { Button, Container, Header, Label } from './Styles'
+import { Button, Container, Header } from './Styles'
 
 const Sidebar: FC = () => {
 	const [SpotifyTrackID, SetSpotifyTrackID] = useState<string>('')
