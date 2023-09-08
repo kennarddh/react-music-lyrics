@@ -20,12 +20,12 @@ const Sidebar: FC = () => {
 
 	const { SetIsFullScreen } = useFullScreen()
 	const {
-		SetFontSize,
 		FontSize,
-		SetTextColor,
+		SetFontSize,
 		TextColor,
-		SetTextFontFamilyGenericName,
+		SetTextColor,
 		TextFontFamilyGenericName,
+		SetTextFontFamilyGenericName,
 		FontKerningState,
 		SetFontKerningState,
 		FontStretchState,
