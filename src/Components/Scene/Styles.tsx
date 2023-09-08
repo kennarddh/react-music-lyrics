@@ -43,7 +43,7 @@ export const BackgroundImage = styled.img`
 	z-index: -100;
 `
 
-export const TextArea = styled.textarea`
+export const TextArea = styled.div`
 	width: 100%;
 	height: 100%;
 

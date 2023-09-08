@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, useCallback, useEffect } from 'react'
+import { FC, FormEvent, useCallback, useEffect, useRef } from 'react'
 
 import Timeline from 'Components/Timeline/Timeline'
 
@@ -35,10 +35,11 @@ const Scene: FC = () => {
 		GetNextSegmentID,
 		GetPreviousSegmentID,
 		EditLyricSegment,
-		IsEditing,
 		SetIsEditing,
-		IsAllowedToEdit,
+		LyricSegments,
 	} = useLyric()
+
+	const TextRef = useRef<HTMLDivElement>(null)
 
 	useEffect(() => {
 		const OnKeyDown = (event: KeyboardEvent) => {
@@ -66,16 +67,35 @@ const Scene: FC = () => {
 	])
 
 	const OnTextChange = useCallback(
-		(event: ChangeEvent<HTMLTextAreaElement>) => {
+		(event: FormEvent<HTMLDivElement>) => {
 			if (!CurrentSegmentID) return
+
+			const target = event.target as HTMLDivElement
+
+			const selection = document.getSelection()
+
+			console.log({ selection, range: selection?.getRangeAt(0) })
 
 			EditLyricSegment(CurrentSegmentID, {
 				...(GetLyricSegmentByID(CurrentSegmentID) as ILyricSegment),
-				words: event.target?.value,
+				words: target.innerText,
 			})
 		},
 		[CurrentSegmentID, EditLyricSegment, GetLyricSegmentByID],
 	)
+
+	useEffect(() => {
+		if (!CurrentSegmentID) return
+
+		if (
+			TextRef.current &&
+			GetLyricSegmentByID(CurrentSegmentID)?.words !==
+				TextRef.current?.innerText
+		) {
+			TextRef.current.innerText =
+				GetLyricSegmentByID(CurrentSegmentID)?.words ?? ''
+		}
+	}, [CurrentSegmentID, GetLyricSegmentByID, LyricSegments])
 
 	return (
 		<Container>
@@ -92,17 +112,22 @@ const Scene: FC = () => {
 							fontStyle: FontStyleState,
 							fontWeight: FontWeightState,
 						}}
-						value={
+						contentEditable
+						suppressContentEditableWarning
+						onInput={OnTextChange}
+						onFocus={() => SetIsEditing(true)}
+						onBlur={() => SetIsEditing(false)}
+						ref={TextRef}
+						defaultValue={
 							CurrentSegmentID
 								? GetLyricSegmentByID(CurrentSegmentID)?.words
 								: ''
 						}
-						onChange={OnTextChange}
-						readOnly={!IsEditing}
-						disabled={!IsAllowedToEdit}
-						onFocus={() => SetIsEditing(true)}
-						onBlur={() => SetIsEditing(false)}
-					/>
+					>
+						{/* {CurrentSegmentID
+							? GetLyricSegmentByID(CurrentSegmentID)?.words
+							: ''} */}
+					</TextArea>
 				</Content>
 			</ContentContainer>
 			<Timeline />
