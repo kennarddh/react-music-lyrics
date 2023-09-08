@@ -48,6 +48,10 @@ const Sidebar: FC = () => {
 		SetFontWeightState,
 		TextAlignState,
 		SetTextAlignState,
+		LetterSpacing,
+		SetLetterSpacing,
+		WordSpacing,
+		SetWordSpacing,
 	} = useContentStyles()
 
 	const { SetLyricSegments, SetCurrentSegmentID } = useLyric()
@@ -242,9 +246,9 @@ const Sidebar: FC = () => {
 					min={0}
 					max={50}
 					step={1}
-					value={FontSize}
+					value={LetterSpacing}
 					onChange={event =>
-						SetFontSize(
+						SetLetterSpacing(
 							Clamp(parseFloat(event.target.value), 0, 50),
 						)
 					}
@@ -258,9 +262,9 @@ const Sidebar: FC = () => {
 					min={0}
 					max={50}
 					step={1}
-					value={FontSize}
+					value={WordSpacing}
 					onChange={event =>
-						SetFontSize(
+						SetWordSpacing(
 							Clamp(parseFloat(event.target.value), 0, 50),
 						)
 					}
