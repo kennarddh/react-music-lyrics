@@ -26,6 +26,14 @@ const Sidebar: FC = () => {
 		TextColor,
 		SetTextFontFamilyGenericName,
 		TextFontFamilyGenericName,
+		FontKerningState,
+		SetFontKerningState,
+		FontStretchState,
+		SetFontStretchState,
+		FontStyleState,
+		SetFontStyleState,
+		FontWeightState,
+		SetFontWeightState,
 	} = useContentStyles()
 
 	const { SetLyricSegments, SetCurrentSegmentID } = useLyric()
@@ -91,7 +99,9 @@ const Sidebar: FC = () => {
 					id={TextFontFamilyGenericNameInputID}
 					value={TextFontFamilyGenericName}
 					onChange={event =>
-						SetTextFontFamilyGenericName(event.target.value)
+						SetTextFontFamilyGenericName(
+							event.target.value as FontFamilyGenericNames,
+						)
 					}
 				>
 					{Object.entries(FontFamilyGenericNames).map(
@@ -108,9 +118,9 @@ const Sidebar: FC = () => {
 				<Input
 					as='select'
 					id={FontKerningInputID}
-					value={TextFontFamilyGenericName}
+					value={FontKerningState}
 					onChange={event =>
-						SetTextFontFamilyGenericName(event.target.value)
+						SetFontKerningState(event.target.value as FontKerning)
 					}
 				>
 					{Object.entries(FontKerning).map(([name, value]) => (
@@ -125,9 +135,9 @@ const Sidebar: FC = () => {
 				<Input
 					as='select'
 					id={FontStretchInputID}
-					value={TextFontFamilyGenericName}
+					value={FontStretchState}
 					onChange={event =>
-						SetTextFontFamilyGenericName(event.target.value)
+						SetFontStretchState(event.target.value as FontStretch)
 					}
 				>
 					{Object.entries(FontStretch).map(([name, value]) => (
@@ -142,9 +152,9 @@ const Sidebar: FC = () => {
 				<Input
 					as='select'
 					id={FontStyleInputID}
-					value={TextFontFamilyGenericName}
+					value={FontStyleState}
 					onChange={event =>
-						SetTextFontFamilyGenericName(event.target.value)
+						SetFontStyleState(event.target.value as FontStyle)
 					}
 				>
 					{Object.entries(FontStyle).map(([name, value]) => (
@@ -159,9 +169,12 @@ const Sidebar: FC = () => {
 				<Input
 					as='select'
 					id={FontWeightInputID}
-					value={TextFontFamilyGenericName}
+					value={FontWeightState}
 					onChange={event =>
-						SetTextFontFamilyGenericName(event.target.value)
+						SetFontWeightState(
+							event.target
+								.value as (typeof FontWeight)[keyof typeof FontWeight],
+						)
 					}
 				>
 					{Object.entries(FontWeight).map(([name, value]) => (
