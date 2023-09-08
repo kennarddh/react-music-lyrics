@@ -1,9 +1,13 @@
 import { FC, useCallback, useId, useState } from 'react'
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {
+	faAlignCenter,
+	faAlignJustify,
+	faAlignLeft,
+	faAlignRight,
+} from '@fortawesome/free-solid-svg-icons'
 
-import { faAlignLeft } from '@fortawesome/free-solid-svg-icons'
-
+import IconRadioGroup from 'Components/IconRadioGroup/IconRadioGroup'
 import Input from 'Components/Input/Input'
 import Label from 'Components/Label/Label'
 
@@ -56,6 +60,9 @@ const Sidebar: FC = () => {
 	const FontStyleInputID = useId()
 	const FontWeightInputID = useId()
 	const TextAlignLeftRadioID = useId()
+	const TextAlignCenterRadioID = useId()
+	const TextAlignRightRadioID = useId()
+	const TextAlignJustifyRadioID = useId()
 
 	const SpotifyTrackIDForImportID = useId()
 
@@ -195,23 +202,33 @@ const Sidebar: FC = () => {
 					))}
 				</Input>
 			</Label>
-			<Label htmlFor={TextAlignLeftRadioID}>
-				<Input
-					type='radio'
-					id={TextAlignLeftRadioID}
-					value={TextAlign.Left}
-					checked={TextAlignState === TextAlign.Left}
-					onChange={event =>
-						SetTextAlignState(event.target.value as TextAlign)
-					}
-					$hidden
-					name='left'
-				/>
-				<FontAwesomeIcon
-					icon={faAlignLeft}
-					style={{ cursor: 'pointer' }}
-				/>
-			</Label>
+			<IconRadioGroup
+				options={[
+					{
+						icon: faAlignLeft,
+						value: TextAlign.Left,
+						id: TextAlignLeftRadioID,
+					},
+					{
+						icon: faAlignCenter,
+						value: TextAlign.Center,
+						id: TextAlignCenterRadioID,
+					},
+					{
+						icon: faAlignRight,
+						value: TextAlign.Right,
+						id: TextAlignRightRadioID,
+					},
+					{
+						icon: faAlignJustify,
+						value: TextAlign.Justify,
+						id: TextAlignJustifyRadioID,
+					},
+				]}
+				value={TextAlignState}
+				onChange={value => SetTextAlignState(value as TextAlign)}
+				name='textAlign'
+			/>
 			<Header>Import From Spotify</Header>
 			<Label htmlFor={SpotifyTrackIDForImportID}>
 				Spotify Track ID

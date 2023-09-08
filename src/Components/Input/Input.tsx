@@ -18,10 +18,6 @@ const Input = styled.input<{ $hidden?: boolean }>`
 		border-radius: 4px;
 	}
 
-	&[type='radio']:checked + svg {
-		outline: 2px solid #f00;
-	}
-
 	${({ $hidden }) =>
 		$hidden
 			? css`
