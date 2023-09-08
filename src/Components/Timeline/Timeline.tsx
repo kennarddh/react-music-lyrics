@@ -1,16 +1,13 @@
 import { FC, useCallback } from 'react'
 
+import TimelineContent from 'Components/TimelineContent/TimelineContent'
+
 import useLyric from 'Hooks/useLyric'
 
-import { AddButton, Container, Content } from './Styles'
+import { AddButton, Container } from './Styles'
 
 const Timeline: FC = () => {
-	const {
-		LyricSegments,
-		CurrentSegmentID,
-		SetCurrentSegmentID,
-		AddLyricSegment,
-	} = useLyric()
+	const { LyricSegments, AddLyricSegment } = useLyric()
 
 	const AddPreviousLyricSegment = useCallback(() => {
 		const id = crypto.randomUUID()
@@ -28,13 +25,7 @@ const Timeline: FC = () => {
 		<Container>
 			<AddButton onClick={AddNextLyricSegment}>Add</AddButton>
 			{LyricSegments.map(segment => (
-				<Content
-					key={segment.id}
-					onClick={() => SetCurrentSegmentID(segment.id)}
-					$isActive={segment.id === CurrentSegmentID}
-				>
-					{segment.words}
-				</Content>
+				<TimelineContent key={segment.id} segmentID={segment.id} />
 			))}
 			<AddButton onClick={AddPreviousLyricSegment}>Add</AddButton>
 		</Container>
