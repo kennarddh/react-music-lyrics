@@ -90,6 +90,7 @@ const TimelineContent: FC<{ segmentID: UUID }> = ({ segmentID }) => {
 			ref={ContentRef}
 			onClick={() => SetCurrentSegmentID(segmentID)}
 			$isActive={segmentID === CurrentSegmentID}
+			id={segmentID}
 			style={{ visibility: isDragging ? 'hidden' : 'unset' }}
 		>
 			{GetLyricSegmentByID(segmentID)?.words}
