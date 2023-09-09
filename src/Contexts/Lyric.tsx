@@ -39,6 +39,8 @@ interface ILyricContext {
 	SetIsEditing: (isEditing: boolean) => void
 	IsAllowedToEdit: boolean
 	SetIsAllowedToEdit: (isEditing: boolean) => void
+
+	MoveSegment: (id: UUID, targetIndex: number) => void
 }
 
 interface ILyricContextProvider {
@@ -65,6 +67,8 @@ const LyricContext = createContext<ILyricContext>({
 	SetIsEditing: () => undefined,
 	IsAllowedToEdit: true,
 	SetIsAllowedToEdit: () => undefined,
+
+	MoveSegment: () => undefined,
 })
 
 export const LyricProvider: FC<ILyricContextProvider> = ({ children }) => {
@@ -78,6 +82,16 @@ export const LyricProvider: FC<ILyricContextProvider> = ({ children }) => {
 			id: 'b9c99bf1-94bf-4735-bb80-8d89329890d7',
 			timeStartMS: 5000,
 			words: 'Dolor sit amet.',
+		},
+		{
+			id: 'f5ce6b4a-9048-4308-a2b8-6ee6fe2faab7',
+			timeStartMS: 10000,
+			words: 'Dolor sit amet. 2',
+		},
+		{
+			id: 'f1a867e6-dfdb-4042-b98d-d2ad5f0e391b',
+			timeStartMS: 15000,
+			words: 'Dolor sit amet. 3',
 		},
 	])
 
@@ -159,6 +173,23 @@ export const LyricProvider: FC<ILyricContextProvider> = ({ children }) => {
 		[IsAllowedToEdit],
 	)
 
+	const MoveSegment = useCallback(
+		(id: UUID, targetIndex: number) => {
+			const segment = GetLyricSegmentByID(id)
+
+			if (!segment) return
+
+			SetLyricSegments(prev =>
+				ArrayInsertAtIndexImmutable(
+					prev.filter(({ id: iterID }) => iterID !== id),
+					targetIndex,
+					segment,
+				),
+			)
+		},
+		[GetLyricSegmentByID],
+	)
+
 	useEffect(() => {
 		if (!IsAllowedToEdit && IsEditing) SetIsEditing(false)
 	}, [IsAllowedToEdit, IsEditing, SetIsEditing])
@@ -185,6 +216,7 @@ export const LyricProvider: FC<ILyricContextProvider> = ({ children }) => {
 				SetIsEditing,
 				IsAllowedToEdit,
 				SetIsAllowedToEdit,
+				MoveSegment,
 			}}
 		>
 			{children}
