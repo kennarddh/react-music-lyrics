@@ -34,6 +34,8 @@ export default defineConfig(({ mode }) => {
 	const { PORT = 3000, OPEN_BROWSER = 'true' } = {
 		...loadEnv(mode, process.cwd(), ''),
 	}
+	
+	const base = mode === 'production' ? /react-music-lyrics/ : '/'
 
 	return {
 		plugins: [
@@ -59,5 +61,6 @@ export default defineConfig(({ mode }) => {
 		build: {
 			outDir: 'build',
 		},
+		base,
 	}
 })
