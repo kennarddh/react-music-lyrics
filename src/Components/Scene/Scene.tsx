@@ -104,7 +104,7 @@ const Scene: FC = () => {
 		<Container>
 			<ContentContainer>
 				<Content ref={FullScreenElementRef}>
-					<BackgroundImage src='/background.jpg' alt='backround' />
+					<BackgroundImage src='background.jpg' alt='backround' />
 					<TextArea
 						style={{
 							fontSize: `${FontSize}cqw`,

@@ -12,12 +12,12 @@ import Input from 'Components/Input/Input'
 import Label from 'Components/Label/Label'
 
 import Clamp from 'Utils/Clamp'
-import SpotifyToLyricSegments from 'Utils/SpotifyToLyricSegments'
 
+// import SpotifyToLyricSegments from 'Utils/SpotifyToLyricSegments'
 import useContentStyles from 'Hooks/useContentStyles'
 import useFullScreen from 'Hooks/useFullScreen'
-import useLyric from 'Hooks/useLyric'
 
+// import useLyric from 'Hooks/useLyric'
 import FontFamilyGenericNames from 'Constants/FontFamilyGenericNames'
 import FontKerning from 'Constants/FontKerning'
 import FontStretch from 'Constants/FontStretch'
@@ -54,7 +54,7 @@ const Sidebar: FC = () => {
 		SetWordSpacing,
 	} = useContentStyles()
 
-	const { SetLyricSegments, SetCurrentSegmentID } = useLyric()
+	// const { SetLyricSegments, SetCurrentSegmentID } = useLyric()
 
 	const FontSizeInputID = useId()
 	const TextColorInputID = useId()
@@ -72,21 +72,28 @@ const Sidebar: FC = () => {
 
 	const SpotifyTrackIDForImportID = useId()
 
-	const ImportLyricFromSpotify = useCallback(async () => {
-		if (
-			!confirm(
-				'Importing lyric from spotify will erase current lyric. Are you sure?',
-			)
-		)
-			return
+	const ImportLyricFromSpotify = useCallback(
+		async () => {
+			alert('Spotify lyric api is not currently available.')
 
-		const lyricSegments = await SpotifyToLyricSegments(SpotifyTrackID)
+			// if (
+			// 	!confirm(
+			// 		'Importing lyric from spotify will erase current lyric. Are you sure?',
+			// 	)
+			// )
+			// 	return
 
-		if (lyricSegments[0]) return alert(lyricSegments[1])
+			// const lyricSegments = await SpotifyToLyricSegments(SpotifyTrackID)
 
-		SetLyricSegments(lyricSegments[1])
-		SetCurrentSegmentID(lyricSegments[1][0].id)
-	}, [SetCurrentSegmentID, SetLyricSegments, SpotifyTrackID])
+			// if (lyricSegments[0]) return alert(lyricSegments[1])
+
+			// SetLyricSegments(lyricSegments[1])
+			// SetCurrentSegmentID(lyricSegments[1][0].id)
+		},
+		[
+			// SetCurrentSegmentID, SetLyricSegments, SpotifyTrackID
+		],
+	)
 
 	return (
 		<Container>
