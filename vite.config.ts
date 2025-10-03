@@ -24,18 +24,18 @@ export const resolveAlias = Object.entries(relativeAlias).reduce(
 
 		return prev
 	},
-	{}
+	{},
 )
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
 	const envPrefix: string[] = ['APP_']
 
-	const { PORT = 3000, OPEN_BROWSER = 'true' } = {
+	const { PORT = '3000', OPEN_BROWSER = 'true' } = {
 		...loadEnv(mode, process.cwd(), ''),
 	}
-	
-	const base = mode === 'production' ? /react-music-lyrics/ : '/'
+
+	const base = mode === 'production' ? '/react-music-lyrics/' : '/'
 
 	return {
 		plugins: [
@@ -54,7 +54,7 @@ export default defineConfig(({ mode }) => {
 			alias: resolveAlias,
 		},
 		server: {
-			port: PORT || 3000,
+			port: parseInt(PORT, 10) || 3000,
 			open: OPEN_BROWSER === 'true' ? true : false,
 		},
 		envPrefix,
